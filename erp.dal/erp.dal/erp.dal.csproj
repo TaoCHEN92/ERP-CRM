@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dao.cs" />
+    <Compile Include="daoclient.cs" />
     <Compile Include="daousers.cs" />
     <Compile Include="variables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,21 +29,19 @@
         </div>
       </div>
     </nav>
-     <div class="container-fluid">
-      <div class="row">
-        <div class="sidebar">
+
+    <div class="sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#"><i class="fa fa-line-chart mr15"></i>运营概况</a></li>
             <li><a href="#"><i class="fa fa-file-text-o mr19"></i>订单管理</a></li>
-            <li><a href="#"><i class="fa fa-book mr19"></i>客户管理</a></li>
+            <li><a href="ClientMain.aspx"><i class="fa fa-book mr19"></i>客户管理</a></li>
             <li><a href="#"><i class="fa fa-users mr18"></i>员工管理</a></li>
             <li><a href="#"><i class="fa fa-cubes mr16"></i>原料管理</a></li>
           </ul>
         </div>
-      </div>
-     </div>
+
     <form id="form1" runat="server">
-    <div>
+    <div class="content_main">
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

@@ -25,20 +25,22 @@ namespace erp.bll
             if (!string.IsNullOrWhiteSpace(un) && !string.IsNullOrWhiteSpace(pw))
             {
                 DataSet DS = new DataSet();
-                DS = daousers.GetUserDetailByLogin(un);
+                DS = daousers.GetUserAuthByLogin(un);
 
                 if (DS.Tables[0].Rows.Count != 0 && DS.Tables[0].Rows[0]["password"].ToString() == password)
                 {
                     HttpContext context = HttpContext.Current;
                     DateTime expirationDate = DateTime.Now.Add(FormsAuthentication.Timeout);
+                    DataSet ds = new DataSet();
+                    ds = daousers.GetUserDetailById(DS.Tables[0].Rows[0]["id_staff"].ToString());
                     bool rememberMe = false;
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                         1,
-                        un,
+                        ds.Tables[0].Rows[0]["id"].ToString(),
                         DateTime.Now,
                         expirationDate,
                         rememberMe,
-                        string.Format("{0}", DS.Tables[0].Rows[0]["class"].ToString()),
+                        string.Format("{0}{1}", DS.Tables[0].Rows[0]["class"].ToString(), ds.Tables[0].Rows[0]["name"].ToString()),
                         FormsAuthentication.FormsCookiePath
                     );
 

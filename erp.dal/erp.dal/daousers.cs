@@ -13,9 +13,14 @@ namespace erp.dal
         /// <summary>
         /// Look up this login in the database
         /// </summary>
-        public static DataSet GetUserDetailByLogin(string login)
+        public static DataSet GetUserAuthByLogin(string login)
         {
             var sqlQuery = string.Format("SELECT * FROM users WHERE login = '{0}'", login);
+            return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
+        }
+        public static DataSet GetUserDetailById(string id)
+        {
+            var sqlQuery = string.Format("SELECT * FROM staff WHERE id = '{0}'", id);
             return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
         }
     }

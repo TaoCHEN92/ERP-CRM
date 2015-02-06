@@ -2,3 +2,8 @@ C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\bin\Debug\
 C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\bin\Debug\erp.dal.pdb
 C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\obj\Debug\erp.dal.dll
 C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\obj\Debug\erp.dal.pdb
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.dal\erp.dal\bin\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.dal\erp.dal\bin\Debug\erp.dal.pdb
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.dal\erp.dal\obj\Debug\erp.dal.csprojResolveAssemblyReference.cache
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.dal\erp.dal\obj\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.dal\erp.dal\obj\Debug\erp.dal.pdb

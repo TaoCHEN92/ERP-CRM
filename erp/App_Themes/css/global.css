@@ -14,3 +14,58 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
     margin: 0 auto;
     margin-top: -600px;
 }
+.lblUserName{
+    color:#ffffff;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    line-height: 20px;
+}
+.navbar-inverse{
+    background:#4b5768 !important;
+    border-color:#4b5768 !important;
+}
+.navbar-inverse .navbar-brand {
+    color: #E2E2E2 !important;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: #ffffff !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #E2E2E2 !important;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #ffffff !important;
+}
+.sidebar {
+    display: none;
+    overflow: hidden;
+    width: 200px;
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;  
+}
+.mr15{
+    margin-right:15px;
+}
+.mr19{
+    margin-right:19px;
+}
+.mr18{
+    margin-right:18px;
+}
+.mr16{
+    margin-right:16px;
+}
+

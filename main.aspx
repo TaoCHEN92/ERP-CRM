@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="main" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPageForMain.master" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="main" %>
 
 <!DOCTYPE html>
 

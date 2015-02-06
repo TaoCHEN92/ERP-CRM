@@ -1,0 +1,14 @@
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\bin\Debug\erp.bll.dll
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\bin\Debug\erp.bll.pdb
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\bin\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\bin\Debug\erp.dal.pdb
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\obj\Debug\erp.bll.csprojResolveAssemblyReference.cache
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\obj\Debug\erp.bll.dll
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.bll\erp.bll\obj\Debug\erp.bll.pdb
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\bin\Debug\erp.bll.dll
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\bin\Debug\erp.bll.pdb
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\bin\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\bin\Debug\erp.dal.pdb
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\obj\Debug\erp.bll.csprojResolveAssemblyReference.cache
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\obj\Debug\erp.bll.dll
+C:\Users\CccTtt\Documents\GitHub\ERP-CRM\erp.bll\erp.bll\obj\Debug\erp.bll.pdb

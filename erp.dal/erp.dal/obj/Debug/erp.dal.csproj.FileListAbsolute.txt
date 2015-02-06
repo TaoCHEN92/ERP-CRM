@@ -1,0 +1,4 @@
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\bin\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\bin\Debug\erp.dal.pdb
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\obj\Debug\erp.dal.dll
+C:\Users\CccTtt\Documents\Visual Studio 2012\Projects\erp.dal\erp.dal\obj\Debug\erp.dal.pdb

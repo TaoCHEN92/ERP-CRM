@@ -72,4 +72,62 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 .mr16{
     margin-right:16px;
 }
+table.gv {
+            border-collapse: collapse;
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+            margin-bottom: 20px;
+         }
+.gv .GridViewHeader {
+            background: #4B5768;
+            color: #F4F4F4;
+            text-align: left;
+            vertical-align: bottom;
+         }
+table.gv tr{
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+table.gv td {
+             padding: 0.5em 1em;
+             background-color: transparent;
+             border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
 
+         }
+table.gv th {
+                padding: 0.5em 1em;
+                border-left: 1px solid #cbcbcb;
+                border-width: 0 0 0 1px;
+                font-size: inherit;
+                margin: 0;
+                overflow: visible;
+           }
+.tbl-edit{
+            border-collapse: separate;
+            border-spacing: 1em;
+        }
+.tbl-edit  tr{
+            line-height:30px;
+        }
+.btn{
+     transition: box-shadow 0.28s !important;
+}
+.btn:hover{
+     box-shadow: 0 0 10px rgba(0,0,0,0.35) !important;
+}
+.btn_search{
+            border: 0;
+            color: #4b5768;
+            background: #4b5768;
+            position: absolute;
+            cursor: pointer;
+            height: 22px;
+            width: 22px;
+            right: 25px;
+            top: 20px;
+        }

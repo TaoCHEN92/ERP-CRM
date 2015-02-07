@@ -11,10 +11,9 @@ namespace erp.dal
     {
         public static DataSet ClientSelectAll()
         {
-            var sqlQuery = string.Format("SELECT * FROM client");
+            string sqlQuery = string.Format("SELECT * FROM client");
             return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
         }
-
         public static void ClientUpdateById(string id, string enterprise, string phone_number, string fax_number, string address) 
         {
             var sqlQuery = string.Format("UPDATE client SET enterprise='{0}', phone_number='{1}',fax_number='{2}',address='{3}' where id = {4}",enterprise,phone_number,fax_number,address,id);

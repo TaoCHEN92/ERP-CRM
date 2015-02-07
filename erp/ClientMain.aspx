@@ -7,17 +7,23 @@
     <div>
     </div>
     <div style="margin-top:100px">
-        <div class="row">
+        <table>
+            <tr>
+                <td>
                 <div style="width:250px">
                     <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search for..."/>
+                          <asp:TextBox runat="server" ID="tbSelectClientByName" CssClass="form-control" Placeholder="按公司名搜索"></asp:TextBox>
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            <asp:Button runat="server" CssClass="btn btn-default" OnClick="bb_onclick" Text="搜索"></asp:Button>
                           </span>
                      </div>
                 </div>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-user-plus"></i> 添加新客户</button>
-        </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default ml80" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-user-plus"></i> 添加新客户</button>
+                </td>
+            </tr>
+        </table>
         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog" style="width:450px">
                 <div class="modal-content">
@@ -60,7 +66,7 @@
             </div>
         <div style="margin-top:20px">
          <asp:GridView ID="gvclient" runat="server" DataSourceID="odsclient" DataKeyNames="id" 
-            AutoGenerateColumns="False" CssClass="gv" >
+            AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到任何公司信息" >
               <HeaderStyle CssClass="GridViewHeader" />
             <Columns>
                  <asp:BoundField DataField="id" HeaderText="客户编号" ReadOnly="True"/>
@@ -117,6 +123,9 @@
             SelectMethod="ClientSelectAll"
             UpdateMethod="ClientUpdateById"
             DeleteMethod="ClientDeleteById">
+        <SelectParameters>
+                <asp:ControlParameter ControlID="tbSelectClientByName" Name="enterprise" PropertyName="Text" Type="String" />
+        </SelectParameters>
         <UpdateParameters>
                 <asp:Parameter Name="id" Type="String" />
                 <asp:Parameter Name="enterprise" Type="String" />

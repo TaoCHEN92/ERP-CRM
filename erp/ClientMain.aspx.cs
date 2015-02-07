@@ -25,4 +25,9 @@ public partial class ClientMain : System.Web.UI.Page
         tbNewPhoneNumber.Text = "";
         tbNewAddress.Text = "";
     }
+
+    protected void bb_onclick(object sender, EventArgs e)
+    {
+
+    }
 }

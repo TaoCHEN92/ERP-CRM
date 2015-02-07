@@ -72,6 +72,10 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 .mr16{
     margin-right:16px;
 }
+.ml80
+{
+    margin-left:80px;
+}
 table.gv {
             border-collapse: collapse;
             border-collapse: collapse;

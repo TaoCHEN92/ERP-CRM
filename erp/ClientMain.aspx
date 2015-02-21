@@ -4,8 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div>
-    </div>
     <div style="margin-top:100px">
         <table>
             <tr>
@@ -14,7 +12,7 @@
                     <div class="input-group">
                           <asp:TextBox runat="server" ID="tbSelectClientByName" CssClass="form-control" Placeholder="按公司名搜索"></asp:TextBox>
                           <span class="input-group-btn">
-                            <asp:Button runat="server" CssClass="btn btn-default" OnClick="bb_onclick" Text="搜索"></asp:Button>
+                            <button class="btn btn-default"><i class="fa fa-search"></i></button>
                           </span>
                      </div>
                 </div>

@@ -135,3 +135,7 @@ table.gv th {
             right: 25px;
             top: 20px;
         }
+.non-visible
+{
+    display:none;
+}

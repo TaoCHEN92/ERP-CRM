@@ -15,6 +15,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+     <form id="form1" runat="server">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
        <div class="container-fluid">
         <div class="navbar-header">
@@ -24,8 +25,10 @@
           <ul class="nav navbar-nav navbar-right">
             <li><asp:Label runat="server" ID="lblUserName" CssClass="lblUserName">欢迎</asp:Label></li>
             <li><a href="#"><i class="fa fa-user fa-2x"></i></a></li>
-            <li><a href="#"><i class="fa fa-sign-out fa-2x"></i></a></li>
+            <li><a href="#" id ="a_signout"><i class="fa fa-sign-out fa-2x"></i></a>
+                </li>
           </ul>
+            <asp:ImageButton ID="imgbtnSignOut" runat="server" cssClass="non-visible" OnClick="imgbtnSignOut_Click" BorderColor="#4B5768" BackColor="#4B5768" />
         </div>
       </div>
     </nav>
@@ -33,19 +36,25 @@
     <div class="sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#"><i class="fa fa-line-chart mr15"></i>运营概况</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o mr19"></i>订单管理</a></li>
+            <li><a href="CommandMain.aspx"><i class="fa fa-file-text-o mr19"></i>订单管理</a></li>
             <li><a href="ClientMain.aspx"><i class="fa fa-book mr19"></i>客户管理</a></li>
             <li><a href="#"><i class="fa fa-users mr18"></i>员工管理</a></li>
             <li><a href="#"><i class="fa fa-cubes mr16"></i>原料管理</a></li>
           </ul>
         </div>
-
-    <form id="form1" runat="server">
+        
     <div class="content_main">
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
     </div>
     </form>
+    <script>
+        $(function () {
+            $('#a_signout').click(function(){
+                $("#<%=imgbtnSignOut.ClientID %>").click();
+            });
+        });
+    </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
             </tr>
         </table>
          <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -33,33 +33,106 @@
                        <table class="tbl-edit">
                            <tr>
                                <td><span style="color:red">*</span></td>
-                               <td>公司名称:</td>
+                               <td>合同号:</td>
+                               <td><asp:TextBox ID="tbIdCommand" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><asp:RequiredFieldValidator ID="rvtbNewIdCommand" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbIdCommand" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                               <td></td>
+                           </tr>
+                           <tr>
+                               <td></td>
+                               <td>返单号:</td>
+                               <td><asp:TextBox ID="tbIdCommand_last" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td></td>
+                               <td></td>
+                           </tr>
+                           <tr>
+                               <td><span style="color:red">*</span></td>
+                               <td>客户名称:</td>
+                               <td><asp:DropDownList ID="ddlNameClient" runat="server" cssClass="form-control"></asp:DropDownList></td>
                                <td></td>
                                <td></td>
                            </tr>
                            <tr>
                                <td></td>
-                               <td>公司号码:</td>
-                               <td><asp:TextBox ID="tbNewPhoneNumber" runat="server"></asp:TextBox></td>
+                               <td>产品名称:</td>
+                               <td><asp:TextBox ID="tbNameProduct" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td></td>
+                               <td></td>
                            </tr>
                            <tr>
                                <td></td>
-                               <td>公司传真:</td>
-                               <td><asp:TextBox ID="tbNewFaxNumber" runat="server"></asp:TextBox></td>
+                               <td>规格:</td>
+                               <td><asp:TextBox ID="tbFormat" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td></td>
+                               <td></td>
+                           </tr>
+                            <tr>
+                               <td><span style="color:red">*</span></td>
+                               <td>数量:</td>
+                               <td><asp:TextBox ID="tbQuantity" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><asp:RequiredFieldValidator ID="rvtbNewQuantity" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbQuantity" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                               <td></td>
+                           </tr>
+                           <tr>
+                               <td><span style="color:red">*</span></td>
+                               <td>单价:</td>
+                               <td><asp:TextBox ID="tbPriceUnit" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><asp:RequiredFieldValidator ID="rvtbNewPriceUnit" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbPriceUnit" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                               <td></td>
                            </tr>
                            <tr>
                                <td></td>
-                               <td>公司地址:</td>
-                               <td><asp:TextBox ID="tbNewAddress" runat="server"></asp:TextBox></td>
+                               <td>单位:</td>
+                               <td><asp:DropDownList ID="ddlUnit" runat="server" cssClass="form-control"></asp:DropDownList></td>
+                               <td></td>
+                               <td></td>
+                           </tr>
+                           <tr id="tr_material_1">
+                               <td></td>
+                               <td>材料1:</td>
+                               <td><asp:DropDownList ID="ddlMaterial1" runat="server" cssClass="form-control"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial1" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
+                           </tr>
+                            <tr id="tr_material_2" style="display:none">
+                               <td></td>
+                               <td>材料2:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_2" runat="server" cssClass="form-control"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_2" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
+                           </tr>
+                           <tr id="tr_material_3" style="display:none">
+                               <td></td>
+                               <td>材料2:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_3" runat="server" cssClass="form-control"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_3" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
+                           </tr>
+                           <tr>
+                               <td><span style="color:red">*</span></td>
+                               <td>交货时间:</td>
+                               <td><asp:TextBox ID="tbDatePreDone" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><asp:RequiredFieldValidator ID="rvtbNewDatePreDone" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbDatePreDone" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
+                               <td></td>
+                           </tr>
+                           <tr>
+                               <td></td>
+                               <td>备注:</td>
+                               <td><textarea id="txaRemark" cols="20" rows="3" class="form-control"></textarea></td>
+                               <td></td>
+                               <td></td>
                            </tr>
                        </table>
                   </div>
                   <div class="modal-footer">
                     <button type="button" id="btnCancel" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <asp:Button ID="btnNewEnterprise" runat="server" Text="保存" CssClass="btn btn-primary"  ValidationGroup="valajouterEnterprise"/>
+                    <asp:Button ID="btnNewEnterprise" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterCommand"/>
                   </div>
                 </div>
-              </div>
+            </div>
         </div>
          <div style="margin-top:20px">
              <asp:GridView ID="gvcommand" runat="server" DataSourceID="odscommand" DataKeyNames="id_command" 
@@ -94,6 +167,19 @@
                 <asp:Parameter Name="id_command" Type="String" />
         </DeleteParameters>
   </asp:ObjectDataSource>
+         <script type="text/javascript">
+             $(document).ready(function(){
+                 $("a.addMaterial").click(function () {
+                     var cur_tr_id = $($(this).parent("td")).parent("tr").attr('id');
+                     var index = cur_tr_id.substring(12, 13);
+                     index = index + 1;
+                     var next_tr_id = "tr_material_" + index;
+                     alert(next_tr_id);
+                     $('#' + next_tr_id).toggle();
+                 });
+             });
+    </script>
     </div>
+   
 </asp:Content>
 

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="client.cs" />
     <Compile Include="command.cs" />
+    <Compile Include="material.cs" />
     <Compile Include="users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

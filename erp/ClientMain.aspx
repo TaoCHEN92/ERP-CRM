@@ -34,24 +34,24 @@
                            <tr>
                                <td><span style="color:red">*</span></td>
                                <td>公司名称:</td>
-                               <td><asp:TextBox ID="tbNewEnterprise" runat="server"></asp:TextBox></td>
+                               <td><asp:TextBox ID="tbNewEnterprise" runat="server" CssClass="form-control"></asp:TextBox></td>
                                <td><asp:RequiredFieldValidator ID="rvtbNewEnterprise" runat="server" ValidationGroup="valajouterEnterprise" ControlToValidate="tbNewEnterprise" ErrorMessage="请输入公司名称" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                            </tr>
                            <tr>
                                <td></td>
                                <td>公司号码:</td>
-                               <td><asp:TextBox ID="tbNewPhoneNumber" runat="server"></asp:TextBox></td>
+                               <td><asp:TextBox ID="tbNewPhoneNumber" runat="server" CssClass="form-control"></asp:TextBox></td>
                            </tr>
                            <tr>
                                <td></td>
                                <td>公司传真:</td>
-                               <td><asp:TextBox ID="tbNewFaxNumber" runat="server"></asp:TextBox></td>
+                               <td><asp:TextBox ID="tbNewFaxNumber" runat="server" CssClass="form-control"></asp:TextBox></td>
                            </tr>
                            <tr>
                                <td></td>
                                <td>公司地址:</td>
-                               <td><asp:TextBox ID="tbNewAddress" runat="server"></asp:TextBox></td>
+                               <td><asp:TextBox ID="tbNewAddress" runat="server" CssClass="form-control"></asp:TextBox></td>
                            </tr>
                        </table>
                   </div>

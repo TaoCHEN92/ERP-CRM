@@ -17,7 +17,6 @@ public partial class ClientMain : System.Web.UI.Page
         client.ClientInsert(tbNewEnterprise.Text, tbNewPhoneNumber.Text,tbNewFaxNumber.Text, tbNewAddress.Text);
         gvclient.DataBind();
         resetAllField();
-
     }
     protected void resetAllField()
     {

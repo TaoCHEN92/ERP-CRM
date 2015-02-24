@@ -11,4 +11,8 @@ public partial class CommandMain : System.Web.UI.Page
     {
 
     }
+    protected void btnNewCommand_click(object sender, EventArgs e)
+    { 
+    
+    }
 }

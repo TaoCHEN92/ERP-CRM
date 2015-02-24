@@ -42,14 +42,21 @@
                                <td></td>
                                <td>返单号:</td>
                                <td><asp:TextBox ID="tbIdCommand_last" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td></td>
+                               <td>
+                               </td>
                                <td></td>
                            </tr>
                            <tr>
                                <td><span style="color:red">*</span></td>
                                <td>客户名称:</td>
-                               <td><asp:DropDownList ID="ddlNameClient" runat="server" cssClass="form-control"></asp:DropDownList></td>
-                               <td></td>
+                               <td><asp:DropDownList ID="ddlNameClient" runat="server" CssClass="form-control" DataSourceID="odsNameClient" DataTextField="enterprise" DataValueField="id"></asp:DropDownList></td>
+                               <td>
+                                    <asp:ObjectDataSource ID="odsNameClient" runat="server" SelectMethod="ClientSelectAll" TypeName="erp.bll.client" >
+                                        <SelectParameters>
+                                            <asp:Parameter Name="enterprise" Type="String" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>
+                               </td>
                                <td></td>
                            </tr>
                            <tr>
@@ -105,7 +112,7 @@
                            </tr>
                            <tr id="tr_material_3" style="display:none">
                                <td></td>
-                               <td>材料2:</td>
+                               <td>材料3:</td>
                                <td><asp:DropDownList ID="ddlMaterial_3" runat="server" cssClass="form-control"></asp:DropDownList></td>
                                <td>使用数量:</td>
                                <td><asp:TextBox ID="tbQuantityMaterial_3" runat="server" cssClass="form-control"></asp:TextBox></td>
@@ -114,7 +121,14 @@
                            <tr>
                                <td><span style="color:red">*</span></td>
                                <td>交货时间:</td>
-                               <td><asp:TextBox ID="tbDatePreDone" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td>
+                                   <div class="input-group date" style="border-spacing:0px">
+                                       <asp:TextBox ID="tbDatePreDone" runat="server" cssClass="form-control"></asp:TextBox>
+                                       <span class="input-group-addon">
+                                           <i class="fa fa-calendar"></i>
+                                       </span>
+                                   </div>
+                               </td>
                                <td><asp:RequiredFieldValidator ID="rvtbNewDatePreDone" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbDatePreDone" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
                                <td></td>
                            </tr>
@@ -129,7 +143,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" id="btnCancel" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <asp:Button ID="btnNewEnterprise" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterCommand"/>
+                    <asp:Button ID="btnNewCommand" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterCommand" OnClick="btnNewCommand_click"/>
                   </div>
                 </div>
             </div>
@@ -167,15 +181,24 @@
                 <asp:Parameter Name="id_command" Type="String" />
         </DeleteParameters>
   </asp:ObjectDataSource>
+        <script>
+            $(function () {
+                $('#<%= tbDatePreDone.ClientID %>').datetimepicker({
+                    pickTime: false,
+                    format:'YYYY/MM/DD',
+                     language: 'zh'
+                });
+             });
+        </script>
          <script type="text/javascript">
-             $(document).ready(function(){
+             $(document).ready(function () { 
                  $("a.addMaterial").click(function () {
                      var cur_tr_id = $($(this).parent("td")).parent("tr").attr('id');
                      var index = cur_tr_id.substring(12, 13);
-                     index = index + 1;
+                     index ++;
                      var next_tr_id = "tr_material_" + index;
-                     alert(next_tr_id);
                      $('#' + next_tr_id).toggle();
+                     $(this).hide();
                  });
              });
     </script>

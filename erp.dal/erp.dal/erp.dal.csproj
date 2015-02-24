@@ -42,6 +42,7 @@
     <Compile Include="dao.cs" />
     <Compile Include="daoclient.cs" />
     <Compile Include="daocommand.cs" />
+    <Compile Include="daomaterial.cs" />
     <Compile Include="daousers.cs" />
     <Compile Include="variables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

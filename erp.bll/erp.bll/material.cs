@@ -38,5 +38,9 @@ namespace erp.bll
         {
             daomaterial.MaterialInsert(material_name, type, unit, supplier, stock);
         }
+        public static void Material_Used_Insert(string id_command, string id_material, string quantity)
+        {
+            daomaterial.Material_Used_Insert(id_command, id_material, quantity);
+        }
     }
 }

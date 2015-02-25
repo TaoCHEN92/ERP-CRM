@@ -29,5 +29,10 @@ namespace erp.dal
             var sqlQuery = string.Format("INSERT INTO material VALUES('{0}','{1}','{2}','{3}','{4}')", material_name, type, supplier, stock, unit);
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
         }
+        public static void Material_Used_Insert(string id_command, string id_material, string quantity)
+        {
+            var sqlQuery = string.Format("INSERT INTO material_used VALUES('{0}','{1}','{2}')", id_command, id_material, quantity);
+            ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+        }
     }
 }

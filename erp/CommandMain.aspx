@@ -31,95 +31,50 @@
                   </div>
                   <div class="modal-body">
                        <table class="tbl-edit">
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td></tr>
                            <tr>
-                               <td><span style="color:red">*</span></td>
+                               <td><span style="color:red;float:right">*</span></td>
                                <td>合同号:</td>
-                               <td><asp:TextBox ID="tbIdCommand" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><asp:RequiredFieldValidator ID="rvtbNewIdCommand" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbIdCommand" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
-                               <td></td>
-                           </tr>
-                           <tr>
-                               <td></td>
+                               <td><asp:TextBox ID="tbIdCommand" runat="server" cssClass="form-control"></asp:TextBox>
+                                   <asp:RequiredFieldValidator ID="rvtbNewIdCommand" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbIdCommand" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator>
+                               </td>
                                <td>返单号:</td>
                                <td><asp:TextBox ID="tbIdCommand_last" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td>
-                               </td>
-                               <td></td>
                            </tr>
                            <tr>
-                               <td><span style="color:red">*</span></td>
+                               <td><span style="color:red;float:right">*</span></td>
                                <td>客户名称:</td>
                                <td><asp:DropDownList ID="ddlNameClient" runat="server" CssClass="form-control" DataSourceID="odsNameClient" DataTextField="enterprise" DataValueField="id"></asp:DropDownList></td>
-                               <td>
                                     <asp:ObjectDataSource ID="odsNameClient" runat="server" SelectMethod="ClientSelectAll" TypeName="erp.bll.client" >
                                         <SelectParameters>
                                             <asp:Parameter Name="enterprise" Type="String" />
                                         </SelectParameters>
                                     </asp:ObjectDataSource>
-                               </td>
-                               <td></td>
-                           </tr>
-                           <tr>
-                               <td></td>
-                               <td>产品名称:</td>
-                               <td><asp:TextBox ID="tbNameProduct" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td></td>
-                               <td></td>
+                              <td>产品名称:</td>
+                              <td><asp:TextBox ID="tbNameProduct" runat="server" cssClass="form-control"></asp:TextBox></td>
                            </tr>
                            <tr>
                                <td></td>
                                <td>规格:</td>
                                <td><asp:TextBox ID="tbFormat" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td></td>
-                               <td></td>
-                           </tr>
-                            <tr>
-                               <td><span style="color:red">*</span></td>
-                               <td>数量:</td>
-                               <td><asp:TextBox ID="tbQuantity" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><asp:RequiredFieldValidator ID="rvtbNewQuantity" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbQuantity" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
-                               <td></td>
-                           </tr>
-                           <tr>
-                               <td><span style="color:red">*</span></td>
-                               <td>单价:</td>
-                               <td><asp:TextBox ID="tbPriceUnit" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><asp:RequiredFieldValidator ID="rvtbNewPriceUnit" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbPriceUnit" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
-                               <td></td>
-                           </tr>
-                           <tr>
-                               <td></td>
                                <td>单位:</td>
-                               <td><asp:DropDownList ID="ddlUnit" runat="server" cssClass="form-control"></asp:DropDownList></td>
-                               <td></td>
-                               <td></td>
-                           </tr>
-                           <tr id="tr_material_1">
-                               <td></td>
-                               <td>材料1:</td>
-                               <td><asp:DropDownList ID="ddlMaterial1" runat="server" cssClass="form-control"></asp:DropDownList></td>
-                               <td>使用数量:</td>
-                               <td><asp:TextBox ID="tbQuantityMaterial1" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
-                           </tr>
-                            <tr id="tr_material_2" style="display:none">
-                               <td></td>
-                               <td>材料2:</td>
-                               <td><asp:DropDownList ID="ddlMaterial_2" runat="server" cssClass="form-control"></asp:DropDownList></td>
-                               <td>使用数量:</td>
-                               <td><asp:TextBox ID="tbQuantityMaterial_2" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
-                           </tr>
-                           <tr id="tr_material_3" style="display:none">
-                               <td></td>
-                               <td>材料3:</td>
-                               <td><asp:DropDownList ID="ddlMaterial_3" runat="server" cssClass="form-control"></asp:DropDownList></td>
-                               <td>使用数量:</td>
-                               <td><asp:TextBox ID="tbQuantityMaterial_3" runat="server" cssClass="form-control"></asp:TextBox></td>
-                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a></td>
+                               <td><asp:DropDownList ID="ddlUnit" runat="server" cssClass="form-control">
+                                  <asp:ListItem Selected="true" Text="本" />
+                                   </asp:DropDownList></td>
                            </tr>
                            <tr>
-                               <td><span style="color:red">*</span></td>
+                               <td><span style="color:red;float:right">*</span></td>
+                               <td>数量:</td>
+                               <td><asp:TextBox ID="tbQuantity" runat="server" cssClass="form-control"></asp:TextBox>
+                                   <asp:RequiredFieldValidator ID="rvtbNewQuantity" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbQuantity" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator>
+                               </td>
+                                <td><span style="color:red">*</span>单价:</td>
+                                <td><asp:TextBox ID="tbPriceUnit" runat="server" cssClass="form-control"></asp:TextBox>
+                                   <asp:RequiredFieldValidator ID="rvtbNewPriceUnit" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbPriceUnit" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span style="color:red;float:right">*</span></td>
                                <td>交货时间:</td>
                                <td>
                                    <div class="input-group date" style="border-spacing:0px">
@@ -132,10 +87,58 @@
                                <td><asp:RequiredFieldValidator ID="rvtbNewDatePreDone" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbDatePreDone" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
                                <td></td>
                            </tr>
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td></tr>
+                           <tr id="tr_material_1">
+                               <td></td>
+                               <td>材料1:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_1" runat="server" cssClass="form-control" DataSourceID="odsMaterial" DataTextField="material_name" DataValueField="id"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_1" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
+                               </td>
+                           </tr>
+                           <tr id="tr_material_2" style="display:none">
+                               <td></td>
+                               <td>材料2:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_2" runat="server" cssClass="form-control" DataSourceID="odsMaterial"  DataTextField="material_name" DataValueField="id"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_2" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td>
+                                   <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
+                                   <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
+                               </td>
+                           </tr>
+                           <tr id="tr_material_3" style="display:none">
+                               <td></td>
+                               <td>材料3:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_3" runat="server" cssClass="form-control"  DataSourceID="odsMaterial"  DataTextField="material_name" DataValueField="id"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_3" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td>
+                                   <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
+                                   <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
+                               </td>
+                           </tr>
+                           <tr id="tr_material_4" style="display:none">
+                               <td></td>
+                               <td>材料4:</td>
+                               <td><asp:DropDownList ID="ddlMaterial_4" runat="server" cssClass="form-control"  DataSourceID="odsMaterial"  DataTextField="material_name" DataValueField="id"></asp:DropDownList></td>
+                               <td>使用数量:</td>
+                               <td><asp:TextBox ID="tbQuantityMaterial_4" runat="server" cssClass="form-control"></asp:TextBox></td>
+                               <td>
+                                   <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
+                                   <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
+                               </td>
+                           </tr>
+                           <asp:ObjectDataSource ID="odsMaterial" runat="server" SelectMethod="MaterialSelectAll" TypeName="erp.bll.material" >
+                                        <SelectParameters>
+                                            <asp:Parameter Name="material_name" Type="String" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>              
                            <tr>
                                <td></td>
                                <td>备注:</td>
-                               <td><textarea id="txaRemark" cols="20" rows="3" class="form-control"></textarea></td>
+                               <td><textarea id="txaRemark" runat="server" cols="20" rows="3" class="form-control"></textarea></td>
                                <td></td>
                                <td></td>
                            </tr>
@@ -185,7 +188,7 @@
             $(function () {
                 $('#<%= tbDatePreDone.ClientID %>').datetimepicker({
                     pickTime: false,
-                    format:'YYYY/MM/DD',
+                    format:'DD/MM/YYYY',
                      language: 'zh'
                 });
              });
@@ -199,6 +202,21 @@
                      var next_tr_id = "tr_material_" + index;
                      $('#' + next_tr_id).toggle();
                      $(this).hide();
+                 });
+
+                 $("a.deleteMaterial").click(function () {
+                     var cur_tr_id = $($(this).parent("td")).parent("tr").attr('id');
+                     var index = cur_tr_id.substring(12, 13);
+                     var tb_name = "tbQuantityMaterial_" + index;
+                     $('[id*= ' + tb_name + ']').val('');
+                     var tr_id = "tr_material_" + index;
+                     if (index != 1)
+                     {
+                         index--;
+                         var last_tr_id = "tr_material_" + index;
+                         $('#' + last_tr_id).find("a.addMaterial").show();
+                     }
+                     $('#' + tr_id).hide();
                  });
              });
     </script>

@@ -16,13 +16,5 @@ public partial class MaterialMain : System.Web.UI.Page
     {
         material.MaterialInsert(tbNewMaterial.Text, ddlTypeNewMaterial.SelectedItem.ToString(), ddlUnitNewMaterial.SelectedItem.ToString(), tbNewMaterialSupplier.Text, tbNewMaterilStock.Text);
         gvmaterial.DataBind();
-        resetAllField();
     }
-    protected void resetAllField()
-    {
-        tbNewMaterial.Text = "";
-        tbNewMaterialSupplier.Text = "";
-        tbNewMaterilStock.Text = "";
-    }
-    
 }

@@ -56,7 +56,7 @@
                        </table>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" id="btnCancel" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="btnCancel" class="btn btn-default" data-dismiss="modal" type="reset">取消</button>
                     <asp:Button ID="btnNewEnterprise" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterEnterprise" OnClick="btnNewEnterprise_click"/>
                   </div>
                 </div>
@@ -136,6 +136,14 @@
         </DeleteParameters>
   </asp:ObjectDataSource>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('.modal').on('hidden.bs.modal', function () {
+                $('#<%= tbNewEnterprise.ClientID %>').val('');
+                $('#<%= tbNewPhoneNumber.ClientID %>').val('');
+                $('#<%= tbNewFaxNumber.ClientID %>').val('');
+                $('#<%= tbNewAddress.ClientID %>').val('');
+            });
+        });
     </script>
 </asp:Content>
 

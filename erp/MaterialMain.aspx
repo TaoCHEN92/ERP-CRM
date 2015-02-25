@@ -129,6 +129,11 @@
                      <asp:TemplateField HeaderText="剩余库存量">
                         <EditItemTemplate>
                             <asp:TextBox ID="tbMaterialStock" runat="server" Text='<%# Bind("stock") %>'></asp:TextBox>
+                            <asp:RegularExpressionValidator id="RegularExpressionValidator2"  runat="server"
+                                     ControlToValidate="tbMaterialStock"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="请输入正整数" ValidationGroup="groupupdate"></asp:RegularExpressionValidator>
+                                    </td>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lblMaterialStock" runat="server" Text='<%# Bind("stock") %>'></asp:Label>
@@ -136,7 +141,7 @@
                     </asp:TemplateField>
                       <asp:TemplateField ShowHeader="False">
                         <EditItemTemplate>
-                             <asp:ImageButton ID="ImgBtnDetailUpdate" runat="server" CausesValidation="True" CommandName="Update"  ImageUrl="App_Themes/Images/icon_ok_16.png" ToolTip="确定" ValidationGroup="grouprupdate"></asp:ImageButton>
+                             <asp:ImageButton ID="ImgBtnDetailUpdate" runat="server" CausesValidation="True" CommandName="Update"  ImageUrl="App_Themes/Images/icon_ok_16.png" ToolTip="确定" ValidationGroup="groupupdate"></asp:ImageButton>
                              &nbsp;&nbsp;&nbsp;<asp:ImageButton ID="ImgBtnDetailUpdateCancel" runat="server" CausesValidation="False" CommandName="Cancel"  ImageUrl="App_Themes/Images/icon_cancel_16.png" ToolTip="取消"></asp:ImageButton>
                         </EditItemTemplate>
                         <ItemTemplate>
@@ -170,5 +175,14 @@
             </asp:ObjectDataSource>
          </div>
       </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.modal').on('hidden.bs.modal', function () {
+                $('#<%= tbNewMaterial.ClientID %>').val('');
+                $('#<%= tbNewMaterialSupplier.ClientID %>').val('');
+                $('#<%= tbNewMaterilStock.ClientID %>').val('');
+            });
+         });
+    </script>
 </asp:Content>
 

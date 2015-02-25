@@ -82,10 +82,20 @@
                                        <span class="input-group-addon">
                                            <i class="fa fa-calendar"></i>
                                        </span>
+                                       <asp:RequiredFieldValidator ID="rvtbNewDatePreDone" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbDatePreDone" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator>
                                    </div>
                                </td>
-                               <td><asp:RequiredFieldValidator ID="rvtbNewDatePreDone" runat="server" ValidationGroup="valajouterCommand" ControlToValidate="tbDatePreDone" ErrorMessage="" ForeColor="Red"></asp:RequiredFieldValidator></td>
                                <td></td>
+                               <td>  <asp:RegularExpressionValidator id="RegularExpressionValidator2"  runat="server"
+                                     ControlToValidate="tbQuantity"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterCommand">
+                                     </asp:RegularExpressionValidator><asp:RegularExpressionValidator id="RegularExpressionValidator1"  runat="server"
+                                     ControlToValidate="tbPriceUnit"
+                                     ValidationExpression="^[0-9].*$" ForeColor="Red"
+                                     ErrorMessage="单价需为正数" ValidationGroup="valajouterCommand"></asp:RegularExpressionValidator>
+                                   
+                                    </td>
                            </tr>
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td></tr>
                            <tr id="tr_material_1">
@@ -95,6 +105,11 @@
                                <td>使用数量:</td>
                                <td><asp:TextBox ID="tbQuantityMaterial_1" runat="server" cssClass="form-control"></asp:TextBox></td>
                                <td><a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
+                               </td>
+                               <td> <asp:RegularExpressionValidator id="RegularExpressionValidator3"  runat="server"
+                                     ControlToValidate="tbQuantityMaterial_1"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterCommand"></asp:RegularExpressionValidator>
                                </td>
                            </tr>
                            <tr id="tr_material_2" style="display:none">
@@ -107,6 +122,11 @@
                                    <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
                                    <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
                                </td>
+                               <td> <asp:RegularExpressionValidator id="RegularExpressionValidator4"  runat="server"
+                                     ControlToValidate="tbQuantityMaterial_2"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterCommand"></asp:RegularExpressionValidator>
+                               </td>
                            </tr>
                            <tr id="tr_material_3" style="display:none">
                                <td></td>
@@ -118,6 +138,11 @@
                                    <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
                                    <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
                                </td>
+                               <td> <asp:RegularExpressionValidator id="RegularExpressionValidator5"  runat="server"
+                                     ControlToValidate="tbQuantityMaterial_3"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterCommand"></asp:RegularExpressionValidator>
+                               </td>
                            </tr>
                            <tr id="tr_material_4" style="display:none">
                                <td></td>
@@ -128,6 +153,11 @@
                                <td>
                                    <a class="addMaterial"><i class="fa fa-plus-circle fa-2x"></i></a>
                                    <a class="deleteMaterial"><i class="fa fa-times-circle fa-2x"></i></a>
+                               </td>
+                                <td> <asp:RegularExpressionValidator id="RegularExpressionValidator6"  runat="server"
+                                     ControlToValidate="tbQuantityMaterial_4"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red"
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterCommand"></asp:RegularExpressionValidator>
                                </td>
                            </tr>
                            <asp:ObjectDataSource ID="odsMaterial" runat="server" SelectMethod="MaterialSelectAll" TypeName="erp.bll.material" >

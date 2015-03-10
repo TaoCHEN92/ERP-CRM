@@ -27,10 +27,13 @@ public partial class CommandMain : System.Web.UI.Page
         string quantity = tbQuantity.Text;
         string price_unit = tbPriceUnit.Text;
         string unit = ddlUnit.SelectedItem.ToString();
-        string status = "待生产";
         string date_done = null;
         string date_delivery = null;
+        string date_pay = null;
         string remark = txaRemark.InnerText;
+        string Is_Done = "0";
+        string Is_Sent = "0";
+        string Is_Paid = "0";
 
         // Get values of controls which are created for Material Info
 
@@ -53,8 +56,34 @@ public partial class CommandMain : System.Web.UI.Page
         }
 
         command.CommandInsert(id_command, id_command_last, id_cilent, name_product, date_pre_done,
-                    date_begin, format, quantity, price_unit, unit, status, date_done, date_delivery, remark);
+                date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
 
         gvcommand.DataBind();
+    }
+    protected void gvcommand_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        fvcommand.Visible = true;
+        string id_command = gvcommand.SelectedDataKey.Value.ToString();
+        odscommand_fv.SelectParameters["id_command"].DefaultValue = id_command;
+        //DataSet DS = vga.GetCommandById(ID);
+        //odsVGA.DataBind();
+        //fvVGA.DataBind();
+        fvcommand.ChangeMode(FormViewMode.ReadOnly);
+        odscommand_fv.DataBind();
+        fvcommand.DataBind();
+    }
+    protected void gvcommand_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            if (e.Row.Cells[1].Text == "生产中")
+            {
+                e.Row.Cells[1].BackColor = System.Drawing.Color.FromArgb(255, 255, 168);
+            }
+            else if (e.Row.Cells[1].Text == "已付款")
+            {
+                e.Row.Cells[1].BackColor = System.Drawing.Color.FromArgb(140, 255, 181);
+            }
+        }
     }
 }

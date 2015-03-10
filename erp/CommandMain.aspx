@@ -182,15 +182,15 @@
             </div>
         </div>
          <div style="margin-top:20px">
-             <asp:GridView ID="gvcommand" runat="server" DataSourceID="odscommand" DataKeyNames="id_command" 
-                AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到任何订单信息" >
+             <asp:GridView ID="gvcommand" runat="server" DataSourceID="odscommand_gv" DataKeyNames="id_command" 
+                AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到任何订单信息" AllowPaging="True" OnSelectedIndexChanged="gvcommand_SelectedIndexChanged" OnRowDataBound="gvcommand_RowDataBound">
                   <HeaderStyle CssClass="GridViewHeader" />
                 <Columns>
                      <asp:BoundField DataField="id_command" HeaderText="合同号" ReadOnly="True"/>
+                     <asp:BoundField DataField="status" HeaderText="进度" ReadOnly="True"/>
                      <asp:BoundField DataField="enterprise" HeaderText="客户名称" ReadOnly="True"/>
                      <asp:BoundField DataField="name_product" HeaderText="产品名称" ReadOnly="True"/>
                      <asp:BoundField DataField="date_pre_done" HeaderText="预计交货日期" ReadOnly="True" DataFormatString="{0:yyyy-MM-dd}"/>
-                     <asp:BoundField DataField="status" HeaderText="进度" ReadOnly="True"/>
                      <asp:TemplateField ShowHeader="False">
                          <ItemTemplate>
                              <asp:ImageButton ID="ImgBtnDetailSelect" runat="server" CausesValidation="False" CommandName="Select" width="17px" ImageUrl="App_Themes/Images/icon_zoom.png" ToolTip="查看"></asp:ImageButton>
@@ -203,22 +203,165 @@
                 </Columns>
              </asp:GridView>
          </div>
-         <asp:ObjectDataSource ID="odscommand" runat="server"
+         <div style="margin-top:20px">
+             <asp:FormView ID="fvcommand" runat="server" DefaultMode="ReadOnly"  DataSourceID="odscommand_fv" Visible="false" BorderStyle="Dashed">
+        <rowstyle backcolor="White"
+          wrap="false"/>
+        <pagerstyle backcolor="CornFlowerBlue"/>
+                 <ItemTemplate>
+                     <table class="tbl-edit">
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td></tr>
+                           <tr>
+                               <td style="font-weight:bold">合同号:</td>
+                               <td><asp:Label ID="fv_lblIdCommand" runat="server"  Text='<%# Bind("id_command") %>'></asp:Label>
+                               </td>
+                           </tr>
+                            <tr> 
+                             <td style="font-weight:bold">返单号:</td>
+                             <td><asp:Label ID="fv_lblIdCommand_last" runat="server"  Text='<%# Bind("id_command_last") %>'></asp:Label></td></tr>
+                            <tr>
+                               <td style="font-weight:bold">状态:</td>
+                               <td>
+                                   <asp:Label ID="fv_lblStatus" runat="server"  Text='<%# Bind("status") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">客户名称:</td>
+                               <td><asp:Label ID="fv_lblNameClient" runat="server"  Text='<%# Bind("enterprise") %>'></asp:Label></td>
+                           </tr>
+                           <tr>
+                              <td style="font-weight:bold">产品名称:</td>
+                              <td><asp:Label ID="fv_lblNameProduct" runat="server"  Text='<%# Bind("name_product") %>'></asp:Label></td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">规格:</td>
+                               <td><asp:Label ID="fv_lblFormat" runat="server"  Text='<%# Bind("format") %>'></asp:Label></td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">单位:</td>
+                               <td><asp:Label ID="fv_lblUnit" runat="server"  Text='<%# Bind("unit") %>'></asp:Label></td>
+                           </tr>
+                           <tr>
+                              
+                               <td style="font-weight:bold">数量:</td>
+                               <td><asp:Label ID="fv_lblQuantity" runat="server"  Text='<%# Bind("quantity") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                                <td style="font-weight:bold">单价:</td>
+                                <td><asp:Label ID="fv_lblPriceUnit" runat="server"  Text='<%# Bind("price_unit") %>'></asp:Label>
+                               </td>
+                           </tr>
+                          <tr>
+                               <td style="font-weight:bold">下单时间:</td>
+                               <td>
+                                   <asp:Label ID="fv_lblDateBegin" runat="server"  Text='<%# Bind("date_begin") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">预计交货时间:</td>
+                               <td>
+                                   <asp:Label ID="fv_lblDatePreDone" runat="server"  Text='<%# Eval("date_pre_done" ,"{0:d}") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">完工时间:</td>
+                               <td>
+                                   <asp:Label ID="fv_lblDateDone" runat="server"  Text='<%# Bind("date_done") %>' Visible='<%# Eval("status").ToString()=="已完成"? Boolean.Parse("True"):Boolean.Parse("False") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">发货时间:</td>
+                               <td>
+                                   <asp:Label ID="Label1" runat="server"  Text='<%# Bind("date_delivery") %>' Visible='<%# Eval("status").ToString()=="已发货"? Boolean.Parse("True"):Boolean.Parse("False") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td style="font-weight:bold">付款时间:</td>
+                               <td>
+                                   <asp:Label ID="Label2" runat="server"  Text='<%# Bind("date_pay") %>' Visible='<%# Eval("status").ToString()=="已付款"? Boolean.Parse("True"):Boolean.Parse("False") %>'></asp:Label>
+                               </td>
+                           </tr>
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td></tr>
+                          <tr><td>
+                              <asp:GridView ID="gvcommand_used" runat="server">
+                                  <columns>
+                                      <asp:TemplateField HeaderText="原料名称">
+                                            <EditItemTemplate>
+                                                <asp:DropdownList ID="ddlMaterial" runat="server" Text='<%# Bind("id_material") %>'></asp:DropdownList>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
+                                            </ItemTemplate>
+                                      </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="使用数量">
+                                            <EditItemTemplate>
+                                                <asp:Textbox ID="tbQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Textbox>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                      </asp:TemplateField>
+                                  </columns>
+                              </asp:GridView>
+                          </td></tr>
+                           <asp:ObjectDataSource ID="odsMaterial" runat="server" SelectMethod="MaterialSelectAll" TypeName="erp.bll.material" >
+                                        <SelectParameters>
+                                            <asp:Parameter Name="material_name" Type="String" />
+                                        </SelectParameters>
+                                    </asp:ObjectDataSource>              
+                           <tr>
+                               <td style="font-weight:bold">备注:</td>
+                               <td><asp:Label id="fv_lblRemark" runat="server" ></asp:Label></td>
+                           </tr>
+                       </table>
+                 </ItemTemplate>
+                 <EditItemTemplate></EditItemTemplate>
+             </asp:FormView>
+         </div>
+         <asp:ObjectDataSource ID="odscommand_gv" runat="server"
             TypeName="erp.bll.command"
             SelectMethod="CommandSelectAll"
             DeleteMethod="CommandDeleteById">
-        <SelectParameters>
-                <asp:ControlParameter ControlID="tbSelectCommandById" Name="id_command" PropertyName="Text" Type="String" />
-        </SelectParameters>
-        <DeleteParameters>
-                <asp:Parameter Name="id_command" Type="String" />
-        </DeleteParameters>
-  </asp:ObjectDataSource>
-        <script>
+            <SelectParameters>
+                    <asp:ControlParameter ControlID="tbSelectCommandById" Name="id_command" PropertyName="Text" Type="String" />
+            </SelectParameters>
+             <DeleteParameters>
+                    <asp:Parameter Name="id_command" Type="String" />
+            </DeleteParameters>
+         </asp:ObjectDataSource>
+         <asp:ObjectDataSource ID="odscommand_fv" runat="server"
+             TypeName="erp.bll.command"
+             SelectMethod="CommandSelectById"
+             UpdateMethod="CommandUpdateById">
+           <SelectParameters>
+               <asp:Parameter Name="id_command" Type="String" />
+           </SelectParameters>
+           <UpdateParameters>
+               <asp:Parameter Name="id_command" Type="String" />
+               <asp:Parameter Name="id_command_last" Type="String" />
+               <asp:Parameter Name="id_cilent" Type="String" />
+               <asp:Parameter Name="name_product" Type="String" />
+               <asp:Parameter Name="date_pre_done" Type="String" />
+               <asp:Parameter Name="date_begin" Type="String" />
+               <asp:Parameter Name="format" Type="String" />
+               <asp:Parameter Name="quantity" Type="String" />
+               <asp:Parameter Name="price_unit" Type="String" />
+               <asp:Parameter Name="unit" Type="String" />
+               <asp:Parameter Name="date_done" Type="String" />
+               <asp:Parameter Name="date_delivery" Type="String" />
+               <asp:Parameter Name="date_pay" Type="String" />
+               <asp:Parameter Name="remark" Type="String" />
+               <asp:Parameter Name="Is_Done" Type="String" />
+               <asp:Parameter Name="Is_Sent" Type="String" />
+               <asp:Parameter Name="Is_Paid" Type="String" />
+           </UpdateParameters>
+         </asp:ObjectDataSource>
+         <script>
             $(function () {
                 $('#<%= tbDatePreDone.ClientID %>').datetimepicker({
                     pickTime: false,
-                    format:'DD/MM/YYYY',
+                    format:'YYYY-MM-DD',
                      language: 'zh'
                 });
              });

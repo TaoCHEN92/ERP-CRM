@@ -59,6 +59,7 @@ public partial class CommandMain : System.Web.UI.Page
                 date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
 
         gvcommand.DataBind();
+        ResetAll();
     }
     protected void gvcommand_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -85,5 +86,19 @@ public partial class CommandMain : System.Web.UI.Page
                 e.Row.Cells[1].BackColor = System.Drawing.Color.FromArgb(140, 255, 181);
             }
         }
+    }
+    public void ResetAll() 
+    {
+        tbIdCommand.Text = "";
+        tbIdCommand_last.Text = "";
+        tbNameProduct.Text = "";
+        tbFormat.Text = "";
+        tbDatePreDone.Text = "";
+        tbPriceUnit.Text = "";
+        tbQuantity.Text = "";
+        tbQuantityMaterial_1.Text = "";
+        tbQuantityMaterial_2.Text = "";
+        tbQuantityMaterial_3.Text = "";
+        tbQuantityMaterial_4.Text = "";
     }
 }

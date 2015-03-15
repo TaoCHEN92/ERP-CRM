@@ -57,7 +57,7 @@
                   </div>
                   <div class="modal-footer">
                     <button id="btnCancel" class="btn btn-default" data-dismiss="modal" type="reset">取消</button>
-                    <asp:Button ID="btnNewEnterprise" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterEnterprise" OnClick="btnNewEnterprise_click"/>
+                    <asp:Button ID="btnNewEnterprise" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterEnterprise" OnClick="btnNewEnterprise_click" />
                   </div>
                 </div>
               </div>

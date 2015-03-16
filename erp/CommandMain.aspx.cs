@@ -66,16 +66,16 @@ public partial class CommandMain : System.Web.UI.Page
         string id_command = lbl_id_command.Text;
 
         List<string> list_material = new List<string>();
-        list_material.Add(ddlMaterial_1.SelectedValue);
-        list_material.Add(ddlMaterial_2.SelectedValue);
-        list_material.Add(ddlMaterial_3.SelectedValue);
-        list_material.Add(ddlMaterial_4.SelectedValue);
+        list_material.Add(ddlMaterialadd_1.SelectedValue);
+        list_material.Add(ddlMaterialadd_2.SelectedValue);
+        list_material.Add(ddlMaterialadd_3.SelectedValue);
+        list_material.Add(ddlMaterialadd_4.SelectedValue);
 
         List<string> list_material_quantity = new List<string>();
-        list_material_quantity.Add(tbQuantityMaterial_1.Text);
-        list_material_quantity.Add(tbQuantityMaterial_2.Text);
-        list_material_quantity.Add(tbQuantityMaterial_3.Text);
-        list_material_quantity.Add(tbQuantityMaterial_4.Text);
+        list_material_quantity.Add(tbQuantityMaterialadd_1.Text);
+        list_material_quantity.Add(tbQuantityMaterialadd_2.Text);
+        list_material_quantity.Add(tbQuantityMaterialadd_3.Text);
+        list_material_quantity.Add(tbQuantityMaterialadd_4.Text);
 
         for (int i = 0; i < 4; i++)
         {

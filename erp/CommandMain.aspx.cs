@@ -10,7 +10,7 @@ public partial class CommandMain : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (String.IsNullOrEmpty(gvcommand.SortExpression)) gvcommand.Sort("date_pre_done", SortDirection.Descending);
     }
     protected void btnNewCommand_click(object sender, EventArgs e)
     {
@@ -61,17 +61,47 @@ public partial class CommandMain : System.Web.UI.Page
         gvcommand.DataBind();
         ResetAll();
     }
+    protected void btnAddNewMatrial_click(object sender, EventArgs e)
+    {
+        string id_command = lbl_id_command.Text;
+
+        List<string> list_material = new List<string>();
+        list_material.Add(ddlMaterial_1.SelectedValue);
+        list_material.Add(ddlMaterial_2.SelectedValue);
+        list_material.Add(ddlMaterial_3.SelectedValue);
+        list_material.Add(ddlMaterial_4.SelectedValue);
+
+        List<string> list_material_quantity = new List<string>();
+        list_material_quantity.Add(tbQuantityMaterial_1.Text);
+        list_material_quantity.Add(tbQuantityMaterial_2.Text);
+        list_material_quantity.Add(tbQuantityMaterial_3.Text);
+        list_material_quantity.Add(tbQuantityMaterial_4.Text);
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (!string.IsNullOrWhiteSpace(list_material_quantity[i]))
+                material.Material_Used_Insert(id_command, list_material[i], list_material_quantity[i]);
+        }
+        odsMaterial.DataBind();
+        GridView gvMaterialUsed = (GridView)fvcommand.FindControl("gvcommand_used");
+        gvMaterialUsed.DataBind();
+        
+    }
     protected void gvcommand_SelectedIndexChanged(object sender, EventArgs e)
     {
         fvcommand.Visible = true;
         string id_command = gvcommand.SelectedDataKey.Value.ToString();
         odscommand_fv.SelectParameters["id_command"].DefaultValue = id_command;
+        odsMaterialUsed.SelectParameters["id_command"].DefaultValue = id_command;
         //DataSet DS = vga.GetCommandById(ID);
         //odsVGA.DataBind();
         //fvVGA.DataBind();
         fvcommand.ChangeMode(FormViewMode.ReadOnly);
         odscommand_fv.DataBind();
+        odsMaterialUsed.DataBind();
         fvcommand.DataBind();
+        GridView gvMaterialUsed = (GridView)fvcommand.FindControl("gvcommand_used");
+        gvMaterialUsed.DataBind();
     }
     protected void gvcommand_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -100,5 +130,35 @@ public partial class CommandMain : System.Web.UI.Page
         tbQuantityMaterial_2.Text = "";
         tbQuantityMaterial_3.Text = "";
         tbQuantityMaterial_4.Text = "";
+        txaRemark.InnerText = "";
+
+        tbQuantityMaterialadd_1.Text = "";
+        tbQuantityMaterialadd_2.Text = "";
+        tbQuantityMaterialadd_3.Text = "";
+        tbQuantityMaterialadd_4.Text = "";
+        lbl_id_command.Text = "";
     }
+    protected void gvcommand_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        String id_command = e.CommandArgument.ToString();
+        if (e.CommandName.ToString() == "Edit")
+        {
+            fvcommand.Visible = true;
+            odscommand_fv.SelectParameters["id_command"].DefaultValue = id_command;
+            odsMaterialUsed.SelectParameters["id_command"].DefaultValue = id_command;
+            lbl_id_command.Text = id_command;
+            fvcommand.ChangeMode(FormViewMode.Edit);
+            odscommand_fv.DataBind();
+            fvcommand.DataBind();
+            GridView gvMaterialUsed = (GridView)fvcommand.FindControl("gvcommand_used");
+            gvMaterialUsed.DataBind();
+        }
+        odscommand_gv.DataBind();
+        gvcommand.DataBind();
+    }
+    public void odscommand_fv_Updated(Object source, ObjectDataSourceStatusEventArgs e)
+    {
+        Response.Redirect(Request.RawUrl);
+    }
+   
 }

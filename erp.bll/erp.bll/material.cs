@@ -26,6 +26,11 @@ namespace erp.bll
             }
             return DS;
         }
+        public DataSet MaterialUsedSelectByCommandId(string id_command)
+        {
+            DataSet DS = daomaterial.MaterialUsedSelectByCommandId(id_command);
+            return DS;
+        }
         public void MaterialUpdateById(string id, string material_name, string type, string unit, string supplier, string stock)
         {
             daomaterial.MaterialUpdateById(id, material_name, type, unit, supplier, stock);

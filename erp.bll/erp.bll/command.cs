@@ -77,13 +77,33 @@ namespace erp.bll
             catch { }
         }
 
-        public static void CommandUpdateById(string id_command, string id_command_last, string id_cilent, string name_product,
+        public static void CommandUpdateById(string id_command, string id_command_last, string status, string name_product,
         string date_pre_done, string date_begin, string format, string quantity, string price_unit, string unit,
-        string date_done, string date_delivery, string date_pay, string remark, string Is_Done, string Is_Sent, string Is_Paid)
+        string date_done, string date_delivery, string date_pay, string remark,string enterprise)
         {
+            string Is_Done = "False";
+            string Is_Sent = "False";
+            string Is_Paid = "False";
+
+            if (status == "生产中") { }
+            else if (status == "准备发货")
+            { 
+                Is_Done = "True"; 
+            }
+            else if (status == "已发货")
+            {
+                Is_Done = "True";
+                Is_Sent = "True";
+            }
+            else if (status == "已付款")
+            {
+                Is_Done = "True";
+                Is_Sent = "True";
+                Is_Paid = "True";
+            }
             try
             {
-                daocommand.CommandUpdateById(id_command, id_command_last, id_cilent, name_product, date_pre_done,
+                daocommand.CommandUpdateById(id_command, id_command_last, name_product, date_pre_done,
                 date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
             }
             catch { }

@@ -35,9 +35,17 @@ namespace erp.bll
         {
             daomaterial.MaterialUpdateById(id, material_name, type, unit, supplier, stock);
         }
+        public void MaterialUsedUpdateByCommandId(string id_command, string material_name, string quantity) 
+        {
+              daomaterial.MaterialUsedUpdateByCommandId(id_command, material_name, quantity);
+        }
         public void MaterialDeleteById(string id)
         {
             daomaterial.MaterialDeleteById(id);
+        }
+        public void MaterialUsedDeleteByCommandId(string id_command, string material_name)
+        {
+            daomaterial.MaterialUsedDeleteByCommandId(id_command, material_name);
         }
         public static void MaterialInsert(string material_name, string type, string unit, string supplier, string stock)
         {

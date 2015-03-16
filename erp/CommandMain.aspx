@@ -490,11 +490,11 @@
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td>
                                <td><button type="button" class="btn btn-default ml80" data-toggle="modal" data-target=".bs-example-modal-lg-material"><i class="fa fa-plus"></i></button></td></tr>
                           <tr><td>
-                              <asp:GridView ID="gvcommand_used" runat="server" DataSourceID="odsMaterialUsed" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到相关原材料">
+                              <asp:GridView ID="gvcommand_used" runat="server" DataSourceID="odsMaterialUsed" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到相关原材料" DataKeyNames="material_name" >
                                   <columns>
                                       <asp:TemplateField HeaderText="原料名称">
                                             <EditItemTemplate>
-                                                <asp:Label ID="ddlMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
+                                                <asp:Label ID="lblMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
                                             </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
@@ -582,12 +582,12 @@
                           <asp:Parameter Name="id_command" Type="String" />
                </SelectParameters>
              <UpdateParameters>
-                          <asp:Parameter Name="id_command" Type="String" />
+                         <asp:ControlParameter ControlID="lbl_id_command" Name="id_command" PropertyName="Text" Type="String" />
                           <asp:Parameter Name="material_name" Type="String" />
                           <asp:Parameter Name="quantity" Type="String" />
              </UpdateParameters>
              <DeleteParameters>
-                    <asp:Parameter Name="id_command" Type="String" />
+                    <asp:ControlParameter ControlID="lbl_id_command" Name="id_command" PropertyName="Text" Type="String" />
                     <asp:Parameter Name="material_name" Type="String" />
             </DeleteParameters>
          </asp:ObjectDataSource>     

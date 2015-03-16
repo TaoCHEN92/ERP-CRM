@@ -494,7 +494,7 @@
                                   <columns>
                                       <asp:TemplateField HeaderText="原料名称">
                                             <EditItemTemplate>
-                                                <asp:DropdownList ID="ddlMaterial" runat="server" Text='<%# Bind("id_material") %>'></asp:DropdownList>
+                                                <asp:Label ID="ddlMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
                                             </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
@@ -508,6 +508,18 @@
                                                 <asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                       </asp:TemplateField>
+                                      <asp:TemplateField ShowHeader="False">
+                                        <EditItemTemplate>
+                                             <asp:ImageButton ID="ImgBtnDetailUpdate" runat="server" CausesValidation="True" CommandName="Update"  ImageUrl="App_Themes/Images/icon_ok_16.png" ToolTip="确定" ValidationGroup="grouprupdate"></asp:ImageButton>
+                                             &nbsp;&nbsp;&nbsp;<asp:ImageButton ID="ImgBtnDetailUpdateCancel" runat="server" CausesValidation="False" CommandName="Cancel"  ImageUrl="App_Themes/Images/icon_cancel_16.png" ToolTip="取消"></asp:ImageButton>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                             <asp:ImageButton ID="ImgBtnDetailEdit" runat="server" CausesValidation="False" CommandName="Edit" width="17px" ImageUrl="App_Themes/Images/icon_edit_16.png" ToolTip="修改"></asp:ImageButton>
+                                             &nbsp;&nbsp;&nbsp;<asp:ImageButton ID="ImgBtnDetailDelete" runat="server" CausesValidation="False" CommandName="Delete" width="14px" ImageUrl="App_Themes/Images/icon_delete_16.png"  ToolTip="删除" ></asp:ImageButton>
+                                            <asp:ConfirmButtonExtender ID="ConfirmButtonExtender2" runat="server" TargetControlID="ImgBtnDetailDelete" ConfirmText="确定删除此原材料？">
+                                                </asp:ConfirmButtonExtender>
+                                         </ItemTemplate>     
+                                     </asp:TemplateField>
                                   </columns>
                               </asp:GridView>
                           </td></tr>
@@ -562,11 +574,23 @@
                                             <asp:Parameter Name="material_name" Type="String" />
                                         </SelectParameters>
                            </asp:ObjectDataSource> 
-         <asp:ObjectDataSource ID="odsMaterialUsed" runat="server" SelectMethod="MaterialUsedSelectByCommandId" TypeName="erp.bll.material" >
-                                        <SelectParameters>
-                                           <asp:Parameter Name="id_command" Type="String" />
-                                        </SelectParameters>
-                           </asp:ObjectDataSource>     
+         <asp:ObjectDataSource ID="odsMaterialUsed" runat="server" TypeName="erp.bll.material" 
+             SelectMethod="MaterialUsedSelectByCommandId" 
+             UpdateMethod="MaterialUsedUpdateByCommandId"
+             DeleteMethod="MaterialUsedDeleteByCommandId">
+               <SelectParameters>
+                          <asp:Parameter Name="id_command" Type="String" />
+               </SelectParameters>
+             <UpdateParameters>
+                          <asp:Parameter Name="id_command" Type="String" />
+                          <asp:Parameter Name="material_name" Type="String" />
+                          <asp:Parameter Name="quantity" Type="String" />
+             </UpdateParameters>
+             <DeleteParameters>
+                    <asp:Parameter Name="id_command" Type="String" />
+                    <asp:Parameter Name="material_name" Type="String" />
+            </DeleteParameters>
+         </asp:ObjectDataSource>     
          <asp:ObjectDataSource ID="odsNameClient" runat="server" SelectMethod="ClientSelectAll" TypeName="erp.bll.client" >
                                         <SelectParameters>
                                             <asp:Parameter Name="enterprise" Type="String" />

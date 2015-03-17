@@ -351,12 +351,6 @@
                                </td>
                            </tr>
                            <tr>
-                               <td style="font-weight:bold">发货时间:</td>
-                               <td>
-                                   <asp:Label ID="Label1" runat="server"  Text='<%# Bind("date_delivery") %>' ></asp:Label>
-                               </td>
-                           </tr>
-                           <tr>
                                <td style="font-weight:bold">付款时间:</td>
                                <td>
                                    <asp:Label ID="Label2" runat="server"  Text='<%# Bind("date_pay") %>' ></asp:Label>
@@ -480,12 +474,6 @@
                                </td>
                            </tr>
                            <tr>
-                               <td style="font-weight:bold">发货时间:</td>
-                               <td>
-                                   <asp:Label ID="fv_lblDateDelivery" runat="server"  Text='<%# Bind("date_delivery") %>'></asp:Label>
-                               </td>
-                           </tr>
-                           <tr>
                                <td style="font-weight:bold">付款时间:</td>
                                <td>
                                    <asp:Label ID="fv_lblDatePay" runat="server"  Text='<%# Bind("date_pay") %>' ></asp:Label>
@@ -568,7 +556,6 @@
                <asp:Parameter Name="price_unit" Type="String" />
                <asp:Parameter Name="unit" Type="String" />
                <asp:Parameter Name="date_done" Type="String" />
-               <asp:Parameter Name="date_delivery" Type="String" />
                <asp:Parameter Name="date_pay" Type="String" />
                <asp:Parameter Name="remark" Type="String" />
                <asp:Parameter Name="enterprise" Type="String" />

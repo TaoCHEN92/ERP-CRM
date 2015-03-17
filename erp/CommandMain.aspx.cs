@@ -28,7 +28,6 @@ public partial class CommandMain : System.Web.UI.Page
         string price_unit = tbPriceUnit.Text;
         string unit = ddlUnit.SelectedItem.ToString();
         string date_done = null;
-        string date_delivery = null;
         string date_pay = null;
         string remark = txaRemark.InnerText;
         string Is_Done = "0";
@@ -56,7 +55,7 @@ public partial class CommandMain : System.Web.UI.Page
         }
 
         command.CommandInsert(id_command, id_command_last, id_cilent, name_product, date_pre_done,
-                date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
+                date_begin, format, quantity, price_unit, unit, date_done, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
 
         gvcommand.DataBind();
         ResetAll();

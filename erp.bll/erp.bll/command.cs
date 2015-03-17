@@ -67,19 +67,19 @@ namespace erp.bll
 
         public static void CommandInsert(string id_command, string id_command_last, string id_cilent, string name_product,
         string date_pre_done, string date_begin, string format, string quantity, string price_unit, string unit,
-        string date_done, string date_delivery, string date_pay, string remark, string Is_Done, string Is_Sent, string Is_Paid)
+        string date_done,string date_pay, string remark, string Is_Done, string Is_Sent, string Is_Paid)
         {
             try
             {
                 daocommand.CommandInsert(id_command, id_command_last, id_cilent, name_product, date_pre_done,
-                date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
+                date_begin, format, quantity, price_unit, unit, date_done, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
             }
             catch { }
         }
 
         public static void CommandUpdateById(string id_command, string id_command_last, string status, string name_product,
         string date_pre_done, string date_begin, string format, string quantity, string price_unit, string unit,
-        string date_done, string date_delivery, string date_pay, string remark,string enterprise)
+        string date_done, string date_pay, string remark,string enterprise)
         {
             string Is_Done = "False";
             string Is_Sent = "False";
@@ -104,13 +104,13 @@ namespace erp.bll
             try
             {
                 daocommand.CommandUpdateById(id_command, id_command_last, name_product, date_pre_done,
-                date_begin, format, quantity, price_unit, unit, date_done, date_delivery, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
+                date_begin, format, quantity, price_unit, unit, date_done, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
             }
             catch { }
         }
         #endregion
         #region Business Methode
-        protected string GetStatus(string Is_Done, string Is_Sent, string Is_Paid)
+        protected String GetStatus(string Is_Done, string Is_Sent, string Is_Paid)
         {
             string Status = "生产中";
             if (Is_Done == "True")

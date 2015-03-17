@@ -19,14 +19,15 @@ namespace erp.dal
             string sqlQuery = string.Format("select ma.material_name, ma_used.quantity from material ma, material_used ma_used where ma_used.id_command = '{0}' and ma_used.id_material = ma.id",id_command);
             return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
         }
-        public static void MaterialUsedUpdateByCommandId(string id_command, string material_name, string quantity)
-        {
-            var sqlQuery = string.Format("UPDATE material_used SET quantity='{2}' where id_command = '{0}' and id_material = (select id from material where material_name= '{1}')", id_command, material_name, quantity);
-            ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
-        }
+      
         public static void MaterialUpdateById(string id, string material_name, string type, string unit, string supplier, string stock)
         {
             var sqlQuery = string.Format("UPDATE material SET material_name='{0}', type='{1}',unit='{2}',supplier='{3}',stock='{4}' where id = {5}", material_name, type, unit, supplier,stock, id);
+            ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+        }
+        public static void MaterialUsedUpdateByCommandId(string id_command, string material_name, string quantity)
+        {
+            var sqlQuery = string.Format("UPDATE material_used SET quantity='{2}' where id_command = '{0}' and id_material = (select id from material where material_name= '{1}')", id_command, material_name, quantity);
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
         }
         public static void MaterialUsedDeleteByCommandId(string id_command, string material_name)

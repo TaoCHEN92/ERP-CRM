@@ -289,7 +289,7 @@
                 </Columns>
              </asp:GridView>
          </div>
-         <div style="margin-top:20px;margin-bottom:50px">
+        <div style="margin-top:20px;margin-bottom:50px;display:inline-block">
              <asp:FormView ID="fvcommand" runat="server" DefaultMode="ReadOnly"  DataSourceID="odscommand_fv" Visible="false" BorderStyle="Dashed">
         <rowstyle backcolor="White"
           wrap="false"/>
@@ -301,10 +301,9 @@
                                <td style="font-weight:bold">合同号:</td>
                                <td><asp:Label ID="fv_lblIdCommand" runat="server"  Text='<%# Bind("id_command") %>'></asp:Label>
                                </td>
-                           </tr>
-                            <tr> 
-                             <td style="font-weight:bold">返单号:</td>
+                                  <td style="font-weight:bold">返单号:</td>
                              <td><asp:Label ID="fv_lblIdCommand_last" runat="server"  Text='<%# Bind("id_command_last") %>'></asp:Label></td></tr>
+                           </tr>
                             <tr>
                                <td style="font-weight:bold">状态:</td>
                                <td>
@@ -322,18 +321,13 @@
                            <tr>
                                <td style="font-weight:bold">规格:</td>
                                <td><asp:Label ID="fv_lblFormat" runat="server"  Text='<%# Bind("format") %>'></asp:Label></td>
-                           </tr>
-                           <tr>
-                               <td style="font-weight:bold">单位:</td>
+                                <td style="font-weight:bold">单位:</td>
                                <td><asp:Label ID="fv_lblUnit" runat="server"  Text='<%# Bind("unit") %>'></asp:Label></td>
                            </tr>
                            <tr>
-                              
                                <td style="font-weight:bold">数量:</td>
                                <td><asp:Label ID="fv_lblQuantity" runat="server"  Text='<%# Bind("quantity") %>'></asp:Label>
                                </td>
-                           </tr>
-                           <tr>
                                 <td style="font-weight:bold">单价:</td>
                                 <td><asp:Label ID="fv_lblPriceUnit" runat="server"  Text='<%# Bind("price_unit") %>'></asp:Label>
                                </td>
@@ -368,6 +362,21 @@
                                    <asp:Label ID="Label2" runat="server"  Text='<%# Bind("date_pay") %>' ></asp:Label>
                                </td>
                            </tr>
+                           <tr>
+                               <td style="font-weight:bold">备注:</td>
+                               <td><asp:Label id="fv_lblRemark" runat="server" ></asp:Label></td>
+                           </tr>
+                     </table>
+                      <table class="tbl-edit">
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">出货记录</div></td></tr>
+                          <tr><td>
+                               <asp:GridView ID="gvDeliveryRecord" runat="server" DataSourceID="" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="该订单还未出货">
+                                  <columns>
+                                  </columns>
+                               </asp:GridView>
+                          </td></tr>
+                     </table>
+                     <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td></tr>
                           <tr><td>
                               <asp:GridView ID="gvcommand_used" runat="server" DataSourceID="odsMaterialUsed" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到相关原材料">
@@ -391,12 +400,7 @@
                                   </columns>
                               </asp:GridView>
                           </td></tr>
-                                   
-                           <tr>
-                               <td style="font-weight:bold">备注:</td>
-                               <td><asp:Label id="fv_lblRemark" runat="server" ></asp:Label></td>
-                           </tr>
-                       </table>
+                     </table>
                  </ItemTemplate>
                  <EditItemTemplate>
                      <table class="tbl-edit">
@@ -487,6 +491,12 @@
                                    <asp:Label ID="fv_lblDatePay" runat="server"  Text='<%# Bind("date_pay") %>' ></asp:Label>
                                </td>
                            </tr>
+                          <tr>
+                               <td style="font-weight:bold">备注:</td>
+                               <td><asp:TextBox id="fv_lblRemark" runat="server" cssClass="form-control"></asp:TextBox></td>
+                           </tr>                 
+                       </table>
+                          <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td>
                                <td><button type="button" class="btn btn-default ml80" data-toggle="modal" data-target=".bs-example-modal-lg-material"><i class="fa fa-plus"></i></button></td></tr>
                           <tr><td>
@@ -523,15 +533,10 @@
                                   </columns>
                               </asp:GridView>
                           </td></tr>
-                                   
-                           <tr>
-                               <td style="font-weight:bold">备注:</td>
-                               <td><asp:TextBox id="fv_lblRemark" runat="server" cssClass="form-control"></asp:TextBox></td>
-                           </tr>
-                       </table>
+                           </table>
                  </EditItemTemplate>
              </asp:FormView>
-         </div>
+        </div>
          <asp:ObjectDataSource ID="odscommand_gv" runat="server"
             TypeName="erp.bll.command"
             SelectMethod="CommandSelectAll"

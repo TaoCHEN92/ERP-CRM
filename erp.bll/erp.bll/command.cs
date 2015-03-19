@@ -11,6 +11,7 @@ namespace erp.bll
     public class command
     {
         #region Data Methode
+        #region command
         public DataSet CommandSelectAll(string id_command)
         {
             DataSet DS = daocommand.CommandSelectAll();
@@ -108,6 +109,14 @@ namespace erp.bll
             }
             catch { }
         }
+        #endregion
+        #region delivery_record
+        public static DataSet DeliveryRecordSelectByCommandId(string id_command)
+          {
+            DataSet DS = daocommand.DeliveryRecordSelectByCommandId(id_command);
+            return DS;
+        }
+        #endregion
         #endregion
         #region Business Methode
         protected String GetStatus(string Is_Done, string Is_Sent, string Is_Paid)

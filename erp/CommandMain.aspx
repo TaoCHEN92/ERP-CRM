@@ -267,6 +267,50 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+        <asp:Label runat="server" ID="lblsum"></asp:Label>
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" style="width:550px">
+            <div class="modal-content" >
+              <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="H2">添加新的出货记录</h4>
+               </div>
+               <div class="modal-body">
+                       <table class="tbl-edit">
+                         <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td></tr>
+                           <tr>
+                               <td><span style="color:red;float:right"></span></td>
+                               <td>合同号:</td>
+                               <td><asp:Label ID="lbl_id_command_delivery" runat="server" ></asp:Label>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td><span style="color:red;float:right"></span></td>
+                               <td>剩余出货量:</td>
+                               <td><asp:Label ID="Label1" runat="server" ></asp:Label>
+                               </td>
+                           </tr>
+                            <tr>
+                               <td><span style="color:red;float:right">*</span></td>
+                               <td>计划出货量:</td>
+                               <td><asp:TextBox ID="tbQuantityDelivery" runat="server" cssClass="form-control"></asp:TextBox>
+                               </td>
+                               <td> <asp:RegularExpressionValidator id="RegularExpressionValidator7"  runat="server"
+                                     ControlToValidate="tbQuantityDelivery"
+                                     ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red" ValidateEmptyText='true'
+                                     ErrorMessage="数量需为正整数" ValidationGroup="valajouterDelivery"></asp:RegularExpressionValidator>
+                               </td>
+                           </tr>
+                       </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="Button2" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <asp:Button ID="btnAddNewDeliveryRecord" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterDelivery" OnClick="btnAddNewMatrial_click"/>
+                </div>
+            </div>
+          </div>
+        </div>
          <div style="margin-top:20px">
              <asp:GridView ID="gvcommand" runat="server" DataSourceID="odscommand_gv" DataKeyNames="id_command" 
                 AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到任何订单信息" AllowPaging="True" OnSelectedIndexChanged="gvcommand_SelectedIndexChanged" OnRowDataBound="gvcommand_RowDataBound" OnRowCommand="gvcommand_RowCommand">
@@ -289,11 +333,10 @@
                 </Columns>
              </asp:GridView>
          </div>
-        <div style="margin-top:20px;margin-bottom:50px;display:inline-block">
+         <div style="margin-top:20px;margin-bottom:50px;display:inline-block">
              <asp:FormView ID="fvcommand" runat="server" DefaultMode="ReadOnly"  DataSourceID="odscommand_fv" Visible="false" BorderStyle="Dashed">
-        <rowstyle backcolor="White"
-          wrap="false"/>
-        <pagerstyle backcolor="CornFlowerBlue"/>
+                <rowstyle backcolor="White" wrap="false"/>
+                <pagerstyle backcolor="CornFlowerBlue"/>
                  <ItemTemplate>
                      <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td></tr>
@@ -303,8 +346,7 @@
                                </td>
                                   <td style="font-weight:bold">返单号:</td>
                              <td><asp:Label ID="fv_lblIdCommand_last" runat="server"  Text='<%# Bind("id_command_last") %>'></asp:Label></td></tr>
-                           </tr>
-                            <tr>
+                           <tr>
                                <td style="font-weight:bold">状态:</td>
                                <td>
                                    <asp:Label ID="fv_lblStatus" runat="server"  Text='<%# Bind("status") %>'></asp:Label>
@@ -361,11 +403,21 @@
                                <td><asp:Label id="fv_lblRemark" runat="server" ></asp:Label></td>
                            </tr>
                      </table>
-                      <table class="tbl-edit">
+                     <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">出货记录</div></td></tr>
                           <tr><td>
-                               <asp:GridView ID="gvDeliveryRecord" runat="server" DataSourceID="" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="该订单还未出货">
+                               <asp:GridView ID="gvDeliveryRecord" runat="server" DataSourceID="odsDeliveryRecord" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="该订单还未出货" OnRowDataBound="gvDeliveryRecord_RowDataBound">
                                   <columns>
+                                       <asp:TemplateField HeaderText="出货时间">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDeliveryDatetime" runat="server" Text='<%# Bind("date_delivery") %>'></asp:Label>
+                                            </ItemTemplate>
+                                      </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="出货数量">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDeliveryQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                      </asp:TemplateField>
                                   </columns>
                                </asp:GridView>
                           </td></tr>
@@ -376,17 +428,11 @@
                               <asp:GridView ID="gvcommand_used" runat="server" DataSourceID="odsMaterialUsed" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="未找到相关原材料">
                                   <columns>
                                       <asp:TemplateField HeaderText="原料名称">
-                                            <EditItemTemplate>
-                                                <asp:DropdownList ID="ddlMaterial" runat="server" Text='<%# Bind("id_material") %>'></asp:DropdownList>
-                                            </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMaterial" runat="server" Text='<%# Bind("material_name") %>'></asp:Label>
                                             </ItemTemplate>
                                       </asp:TemplateField>
                                        <asp:TemplateField HeaderText="使用数量">
-                                            <EditItemTemplate>
-                                                <asp:Textbox ID="tbQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Textbox>
-                                            </EditItemTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
@@ -484,7 +530,7 @@
                                <td><asp:TextBox id="fv_lblRemark" runat="server" cssClass="form-control"></asp:TextBox></td>
                            </tr>                 
                        </table>
-                          <table class="tbl-edit">
+                     <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">原料信息</div></td>
                                <td><button type="button" class="btn btn-default ml80" data-toggle="modal" data-target=".bs-example-modal-lg-material"><i class="fa fa-plus"></i></button></td></tr>
                           <tr><td>
@@ -523,7 +569,7 @@
                           </td></tr>
                            </table>
                  </EditItemTemplate>
-             </asp:FormView>
+            </asp:FormView>
         </div>
          <asp:ObjectDataSource ID="odscommand_gv" runat="server"
             TypeName="erp.bll.command"
@@ -587,12 +633,20 @@
                                         <SelectParameters>
                                             <asp:Parameter Name="enterprise" Type="String" />
                                         </SelectParameters>
-                                    </asp:ObjectDataSource>
+         </asp:ObjectDataSource>
+         <asp:ObjectDataSource ID="odsDeliveryRecord" runat="server" TypeName="erp.bll.command" 
+             SelectMethod="DeliveryRecordSelectByCommandId" >
+               <SelectParameters>
+                          <asp:Parameter Name="id_command" Type="String" />
+               </SelectParameters>
+         </asp:ObjectDataSource>     
+
+
          <script>
             $(function () {
                 $('#<%= tbDatePreDone.ClientID %>').datetimepicker({
                     pickTime: false,
-                    format: 'YYYY-MM-DD',
+                    format: 'YYYY/MM/DD',
                     language: 'zh'
                 });
              });
@@ -664,7 +718,9 @@
                       $('#<%= tbQuantityMaterialadd_1.ClientID %>').val('');
                       $('#<%= tbQuantityMaterialadd_2.ClientID %>').val('');
                       $('#<%= tbQuantityMaterialadd_3.ClientID %>').val('');
-                      $('#<%= tbQuantityMaterialadd_4.ClientID %>').val('');
+                     $('#<%= tbQuantityMaterialadd_4.ClientID %>').val('');
+
+                     $('#<%= tbQuantityDelivery.ClientID %>').val(''); 
                   });
              });
     </script>

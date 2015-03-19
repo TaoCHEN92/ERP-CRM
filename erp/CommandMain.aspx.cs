@@ -90,17 +90,19 @@ public partial class CommandMain : System.Web.UI.Page
     {
         fvcommand.Visible = true;
         string id_command = gvcommand.SelectedDataKey.Value.ToString();
+
         odscommand_fv.SelectParameters["id_command"].DefaultValue = id_command;
         odsMaterialUsed.SelectParameters["id_command"].DefaultValue = id_command;
-        //DataSet DS = vga.GetCommandById(ID);
-        //odsVGA.DataBind();
-        //fvVGA.DataBind();
+        odsDeliveryRecord.SelectParameters["id_command"].DefaultValue = id_command;
+        lbl_id_command_delivery.Text = id_command;
         fvcommand.ChangeMode(FormViewMode.ReadOnly);
         odscommand_fv.DataBind();
-        odsMaterialUsed.DataBind();
         fvcommand.DataBind();
+
         GridView gvMaterialUsed = (GridView)fvcommand.FindControl("gvcommand_used");
         gvMaterialUsed.DataBind();
+        GridView gvDeliveryRecord = (GridView)fvcommand.FindControl("gvDeliveryRecord");
+        gvDeliveryRecord.DataBind();
     }
     protected void gvcommand_RowDataBound(object sender, GridViewRowEventArgs e)
     {
@@ -136,6 +138,8 @@ public partial class CommandMain : System.Web.UI.Page
         tbQuantityMaterialadd_3.Text = "";
         tbQuantityMaterialadd_4.Text = "";
         lbl_id_command.Text = "";
+        lbl_id_command_delivery.Text = "";
+        tbQuantityDelivery.Text = "";
     }
     protected void gvcommand_RowCommand(object sender, GridViewCommandEventArgs e)
     {
@@ -159,5 +163,15 @@ public partial class CommandMain : System.Web.UI.Page
     {
         Response.Redirect(Request.RawUrl);
     }
-   
+
+    protected void gvDeliveryRecord_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        int total = 0;
+
+            Label lblDeliveryQuantity = (Label)e.Row.FindControl("lblDeliveryQuantity");
+            int quantity = Int32.Parse(lblDeliveryQuantity.Text);
+            total += quantity;
+
+        lblsum.Text = total.ToString();
+    }
 }

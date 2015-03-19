@@ -9,6 +9,7 @@ namespace erp.dal
 {
     public class daocommand : dao
     {
+        #region command
         public static DataSet CommandSelectAll()
         {
             string sqlQuery = string.Format("SELECT co.*, cl.enterprise FROM command co, client cl where co.id_client = cl.id");
@@ -52,5 +53,13 @@ namespace erp.dal
                 date_begin, format, quantity, price_unit, unit, date_done, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
         }
+        #endregion
+        #region Delivery Record
+        public static DataSet DeliveryRecordSelectByCommandId(string id_command)
+        {
+            string sqlQuery = string.Format("SELECT * from delivery_record where id_command = '{0}'",id_command);
+            return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
+        }
+        #endregion
     }
 }

@@ -267,8 +267,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-        <asp:Label runat="server" ID="lblsum"></asp:Label>
+        
         <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm" style="width:550px">
             <div class="modal-content" >
@@ -288,7 +287,7 @@
                            <tr>
                                <td><span style="color:red;float:right"></span></td>
                                <td>剩余出货量:</td>
-                               <td><asp:Label ID="Label1" runat="server" ></asp:Label>
+                               <td><asp:Label ID="lbl_num_toDelivery" runat="server" ></asp:Label>
                                </td>
                            </tr>
                             <tr>
@@ -300,13 +299,14 @@
                                      ControlToValidate="tbQuantityDelivery"
                                      ValidationExpression="^\+?[1-9][0-9]*$" ForeColor="Red" ValidateEmptyText='true'
                                      ErrorMessage="数量需为正整数" ValidationGroup="valajouterDelivery"></asp:RegularExpressionValidator>
+
                                </td>
                            </tr>
                        </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="Button2" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <asp:Button ID="btnAddNewDeliveryRecord" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterDelivery" OnClick="btnAddNewMatrial_click"/>
+                    <asp:Button ID="btnAddNewDeliveryRecord" runat="server" Text="提交" CssClass="btn btn-primary"  ValidationGroup="valajouterDelivery" OnClick="btnAddNewDeliveryRecord_click"/>
                 </div>
             </div>
           </div>
@@ -339,7 +339,10 @@
                 <pagerstyle backcolor="CornFlowerBlue"/>
                  <ItemTemplate>
                      <table class="tbl-edit">
-                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td></tr>
+                           <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td><td></td><td></td>
+                               <td>
+                                   <button type="button" id="btn_AddDelivery" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-truck"></i> 出货</button>
+                               </td></tr>
                            <tr>
                                <td style="font-weight:bold">合同号:</td>
                                <td><asp:Label ID="fv_lblIdCommand" runat="server"  Text='<%# Bind("id_command") %>'></asp:Label>
@@ -408,16 +411,8 @@
                           <tr><td>
                                <asp:GridView ID="gvDeliveryRecord" runat="server" DataSourceID="odsDeliveryRecord" AutoGenerateColumns="False" CssClass="gv" EmptyDataText="该订单还未出货" OnRowDataBound="gvDeliveryRecord_RowDataBound">
                                   <columns>
-                                       <asp:TemplateField HeaderText="出货时间">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDeliveryDatetime" runat="server" Text='<%# Bind("date_delivery") %>'></asp:Label>
-                                            </ItemTemplate>
-                                      </asp:TemplateField>
-                                       <asp:TemplateField HeaderText="出货数量">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblDeliveryQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
-                                            </ItemTemplate>
-                                      </asp:TemplateField>
+                                      <asp:BoundField DataField="date_delivery" HeaderText="出货时间" DataFormatString="{0:yyyy-MM-dd HH:MM:SS}"/>
+                                      <asp:BoundField DataField="quantity" HeaderText="出货数量" />
                                   </columns>
                                </asp:GridView>
                           </td></tr>
@@ -646,14 +641,17 @@
             $(function () {
                 $('#<%= tbDatePreDone.ClientID %>').datetimepicker({
                     pickTime: false,
-                    format: 'YYYY/MM/DD',
+                    format: 'YYYY-MM-DD',
                     language: 'zh'
                 });
              });
         </script>
          <script type="text/javascript">
              $(document).ready(function () {
-
+                 if ($('#<%=  lbl_num_toDelivery.ClientID %>').text() == "0")
+                 {
+                     $('button#btn_AddDelivery').css('display', 'none');
+                 }
                  $("a.addMaterial").click(function () {
                      var cur_tr_id = $($(this).parent("td")).parent("tr").attr('id');
                      var index = cur_tr_id.substring(12, 13);

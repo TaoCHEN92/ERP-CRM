@@ -112,9 +112,13 @@ namespace erp.bll
         #endregion
         #region delivery_record
         public static DataSet DeliveryRecordSelectByCommandId(string id_command)
-          {
+        {
             DataSet DS = daocommand.DeliveryRecordSelectByCommandId(id_command);
             return DS;
+        }
+        public static void DeliveryRecordInsertCommandId(string id_command, string quantity, string dateTime)
+        {
+            daocommand.DeliveryRecordInsertCommandId(id_command,quantity,dateTime);
         }
         #endregion
         #endregion

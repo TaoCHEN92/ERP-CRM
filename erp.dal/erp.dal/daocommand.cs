@@ -60,6 +60,11 @@ namespace erp.dal
             string sqlQuery = string.Format("SELECT * from delivery_record where id_command = '{0}'",id_command);
             return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
         }
+        public static void DeliveryRecordInsertCommandId(string id_command, string quantity, string dateTime)
+        {
+            string sqlQuery = string.Format("INSERT INTO delivery_record VALUES('{0}','{1}','{2}')", id_command,quantity,dateTime);
+            ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+        }
         #endregion
     }
 }

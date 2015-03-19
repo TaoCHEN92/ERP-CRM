@@ -8,9 +8,25 @@ using erp.bll;
 
 public partial class CommandMain : System.Web.UI.Page
 {
+    int total_Deliveryed = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(gvcommand.SortExpression)) gvcommand.Sort("date_pre_done", SortDirection.Descending);
+    }
+    protected void btnAddNewDeliveryRecord_click(object sender, EventArgs e) 
+    {
+        if (!String.IsNullOrEmpty(tbQuantityDelivery.Text))
+        {
+            if (Int32.Parse(tbQuantityDelivery.Text) <= Int32.Parse(lbl_num_toDelivery.Text))
+            {
+                string dateTime = DateTime.Now.ToString("u");
+                dateTime = dateTime.Substring(0, dateTime.Length - 1);
+                command.DeliveryRecordInsertCommandId(lbl_id_command_delivery.Text, tbQuantityDelivery.Text, dateTime);
+            }
+        }
+        ResetAll();
+        odscommand_fv.DataBind();
+        fvcommand.DataBind();
     }
     protected void btnNewCommand_click(object sender, EventArgs e)
     {
@@ -22,7 +38,8 @@ public partial class CommandMain : System.Web.UI.Page
         string id_cilent = ddlNameClient.SelectedValue;
         string name_product = tbNameProduct.Text;
         string date_pre_done = tbDatePreDone.Text;
-        string date_begin = DateTime.Now.ToString();
+        string date_begin = DateTime.Now.ToString("u");
+        date_begin = date_begin.Substring(0, date_begin.Length - 1);
         string format = tbFormat.Text;
         string quantity = tbQuantity.Text;
         string price_unit = tbPriceUnit.Text;
@@ -98,12 +115,8 @@ public partial class CommandMain : System.Web.UI.Page
         fvcommand.ChangeMode(FormViewMode.ReadOnly);
         odscommand_fv.DataBind();
         fvcommand.DataBind();
-
-        GridView gvMaterialUsed = (GridView)fvcommand.FindControl("gvcommand_used");
-        gvMaterialUsed.DataBind();
-        GridView gvDeliveryRecord = (GridView)fvcommand.FindControl("gvDeliveryRecord");
-        gvDeliveryRecord.DataBind();
     }
+
     protected void gvcommand_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -138,7 +151,7 @@ public partial class CommandMain : System.Web.UI.Page
         tbQuantityMaterialadd_3.Text = "";
         tbQuantityMaterialadd_4.Text = "";
         lbl_id_command.Text = "";
-        lbl_id_command_delivery.Text = "";
+
         tbQuantityDelivery.Text = "";
     }
     protected void gvcommand_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -163,15 +176,15 @@ public partial class CommandMain : System.Web.UI.Page
     {
         Response.Redirect(Request.RawUrl);
     }
-
     protected void gvDeliveryRecord_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        int total = 0;
-
-            Label lblDeliveryQuantity = (Label)e.Row.FindControl("lblDeliveryQuantity");
-            int quantity = Int32.Parse(lblDeliveryQuantity.Text);
-            total += quantity;
-
-        lblsum.Text = total.ToString();
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            int quantity = Int32.Parse(e.Row.Cells[1].Text);
+            total_Deliveryed += quantity;
+        }
+        Label fv_lblQuantity = (Label)fvcommand.FindControl("fv_lblQuantity");
+        int num_toDelivery = Int32.Parse(fv_lblQuantity.Text) - total_Deliveryed;
+        lbl_num_toDelivery.Text = num_toDelivery.ToString();
     }
 }

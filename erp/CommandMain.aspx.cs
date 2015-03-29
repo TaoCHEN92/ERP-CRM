@@ -22,6 +22,11 @@ public partial class CommandMain : System.Web.UI.Page
                 string dateTime = DateTime.Now.ToString("u");
                 dateTime = dateTime.Substring(0, dateTime.Length - 1);
                 command.DeliveryRecordInsertCommandId(lbl_id_command_delivery.Text, tbQuantityDelivery.Text, dateTime);
+                if (Int32.Parse(tbQuantityDelivery.Text) == Int32.Parse(lbl_num_toDelivery.Text))
+                {
+                    command.CommandStatus_Update(lbl_id_command_delivery.Text, "is_sent");
+                }
+                odscommand_gv.DataBind();
             }
         }
         ResetAll();
@@ -76,6 +81,11 @@ public partial class CommandMain : System.Web.UI.Page
 
         gvcommand.DataBind();
         ResetAll();
+    }
+    protected void btn_is_done_Click(object sender, EventArgs e)
+    {
+        command.CommandStatus_Update(lbl_id_command_delivery.Text, "is_done");
+        odscommand_gv.DataBind();
     }
     protected void btnAddNewMatrial_click(object sender, EventArgs e)
     {
@@ -186,5 +196,9 @@ public partial class CommandMain : System.Web.UI.Page
         Label fv_lblQuantity = (Label)fvcommand.FindControl("fv_lblQuantity");
         int num_toDelivery = Int32.Parse(fv_lblQuantity.Text) - total_Deliveryed;
         lbl_num_toDelivery.Text = num_toDelivery.ToString();
+    }
+    protected void btn_is_dont_Click(object sender, EventArgs e)
+    {
+
     }
 }

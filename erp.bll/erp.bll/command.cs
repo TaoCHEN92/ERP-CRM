@@ -111,6 +111,11 @@ namespace erp.bll
             }
             catch { }
         }
+
+        public static void CommandStatus_Update(string id_command, string status_update)
+        {
+            daocommand.CommandStatus_Update(id_command, status_update);
+        }
         #endregion
         #region delivery_record
         public static DataSet DeliveryRecordSelectByCommandId(string id_command)

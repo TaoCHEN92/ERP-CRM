@@ -56,6 +56,28 @@ namespace erp.dal
                 date_begin, format, quantity, price_unit, unit, date_done, date_pay, remark, Is_Done, Is_Sent, Is_Paid);
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
         }
+
+        public static void CommandStatus_Update(string id_command, string status_update)
+        {
+            string date_now = DateTime.Now.ToString("u");
+            date_now = date_now.Substring(0, date_now.Length - 1);
+            if (status_update == "is_done")
+            {
+                var sqlQuery = string.Format("UPDATE command SET Is_Done = 1, date_done = '{1}'WHERE id_command = '{0}'", id_command, date_now);
+                ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+            }
+            else if (status_update == "is_sent")
+            {
+                var sqlQuery = string.Format("UPDATE command SET Is_Sent = 1 WHERE id_command = '{0}'", id_command);
+                ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+            }
+            else if (status_update == "is_paid")
+            {
+                var sqlQuery = string.Format("UPDATE command SET Is_Paid = 1, date_pay = '{1}'WHERE id_command = '{0}'", id_command, date_now);
+                ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+            }
+        }
+
         #endregion
         #region Delivery Record
         public static DataSet DeliveryRecordSelectByCommandId(string id_command)

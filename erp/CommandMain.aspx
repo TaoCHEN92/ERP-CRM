@@ -342,7 +342,11 @@
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td><td></td><td></td>
                                <td>
                                    <button type="button" id="btn_AddDelivery" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-truck"></i> 出货</button>
-                               </td></tr>
+                               </td>
+                                <td>
+                                   <asp:Button ID="btn_is_done" runat="server" CssClass="btn btn-default" OnClick="btn_is_done_Click" Text="完成生产"/>
+                               </td>
+                           </tr>
                            <tr>
                                <td style="font-weight:bold">合同号:</td>
                                <td><asp:Label ID="fv_lblIdCommand" runat="server"  Text='<%# Bind("id_command") %>'></asp:Label>

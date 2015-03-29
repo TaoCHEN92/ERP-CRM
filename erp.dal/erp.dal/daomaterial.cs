@@ -11,7 +11,7 @@ namespace erp.dal
     {
         public static DataSet MaterialSelectAll()
         {
-            string sqlQuery = string.Format("SELECT * FROM material");
+            string sqlQuery = string.Format("select m.id, m.material_name,m.supplier,m.type,m.unit,stock=ISNULL(m.stock, 0)-ISNULL(mu.quantity,0) from material m  left join (select id_material,quantity=sum(quantity) from material_used group by id_material) mu on m.id=mu.id_material");
             return ExecuteDataAdapter(sqlQuery, variables.SqlConStrERP);
         }
         public static DataSet MaterialUsedSelectByCommandId(string id_command)
@@ -22,7 +22,19 @@ namespace erp.dal
       
         public static void MaterialUpdateById(string id, string material_name, string type, string unit, string supplier, string stock)
         {
-            var sqlQuery = string.Format("UPDATE material SET material_name='{0}', type='{1}',unit='{2}',supplier='{3}',stock='{4}' where id = {5}", material_name, type, unit, supplier,stock, id);
+            var sqlQuery = @"DECLARE @rest INT
+                               DECLARE @added INT
+                               SET @rest = (select stock=ISNULL(m.stock, 0)-ISNULL(mu.quantity,0) from material m  left join (select id_material,quantity=sum(quantity) from material_used group by id_material) mu
+                                 on m.id=mu.id_material where m.id='@m_id')
+                               SET @added=@m_added
+                               UPDATE material SET material_name='@m_name', type='@m_type',unit='@m_unit',supplier='@m_supplier', stock = stock + (@added-@rest) where id='@m_id' "
+                                .Replace("@m_id", id)
+                                .Replace("@m_name", material_name)
+                                .Replace("@m_type", type)
+                                .Replace("@m_unit", unit)
+                                .Replace("@m_added",stock)
+                                .Replace("@m_supplier", supplier);
+
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
         }
         public static void MaterialUsedUpdateByCommandId(string id_command, string material_name, string quantity)

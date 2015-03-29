@@ -15,6 +15,23 @@ namespace erp.bll
         public DataSet CommandSelectAll(string id_command)
         {
             DataSet DS = daocommand.CommandSelectAll();
+            string Is_Done;
+            string Is_Sent;
+            string Is_Paid;
+
+            DataColumn col_status = DS.Tables[0].Columns.Add("status", typeof(string));
+            foreach (DataRow row in DS.Tables[0].Rows)
+            {
+                Is_Done = "";
+                Is_Sent = "";
+                Is_Paid = "";
+
+                Is_Done = row["Is_Done"].ToString();
+                Is_Sent = row["Is_Sent"].ToString();
+                Is_Paid = row["Is_Paid"].ToString();
+                row["status"] = GetStatus(Is_Done, Is_Sent, Is_Paid);
+            }
+
             if (!string.IsNullOrWhiteSpace(id_command))
             {
                 foreach (System.Data.DataTable table in DS.Tables)
@@ -27,22 +44,7 @@ namespace erp.bll
                 }
             }
 
-            string Is_Done;
-            string Is_Sent;
-            string Is_Paid;
-
-            DataColumn col_status = DS.Tables[0].Columns.Add("status", typeof(string));
-            foreach (DataRow row in DS.Tables[0].Rows)
-            {
-                 Is_Done = "";
-                 Is_Sent = "";
-                 Is_Paid = "";
-
-                 Is_Done = row["Is_Done"].ToString();
-                 Is_Sent = row["Is_Sent"].ToString();
-                 Is_Paid = row["Is_Paid"].ToString();
-                 row["status"] = GetStatus(Is_Done, Is_Sent, Is_Paid);
-            }
+           
             return DS;
         }
         public DataSet CommandSelectById(string id_command)

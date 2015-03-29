@@ -23,7 +23,10 @@ namespace erp.dal
         public static void CommandDeleteById(string id_command)
         {
             var sqlQuery = string.Format("DELETE FROM command where id_command = '{0}'", id_command);
+            var sqlQuery_ = string.Format("DELETE FROM material_used where id_command = '{0}'", id_command);
+
             ExecuteNonQuery(sqlQuery, variables.SqlConStrERP);
+            ExecuteNonQuery(sqlQuery_, variables.SqlConStrERP);
         }
 
         public static void CommandInsert(string id_command, string id_command_last, string id_cilent, string name_product,

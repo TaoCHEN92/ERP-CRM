@@ -26,6 +26,7 @@ public partial class CommandMain : System.Web.UI.Page
                 {
                     command.CommandStatus_Update(lbl_id_command_delivery.Text, "is_sent");
                 }
+                gvcommand.DataBind();
                 odscommand_gv.DataBind();
             }
         }
@@ -85,7 +86,20 @@ public partial class CommandMain : System.Web.UI.Page
     protected void btn_is_done_Click(object sender, EventArgs e)
     {
         command.CommandStatus_Update(lbl_id_command_delivery.Text, "is_done");
+        gvcommand.DataBind();
         odscommand_gv.DataBind();
+
+        fvcommand.DataBind();
+        odscommand_fv.DataBind();
+    }
+    protected void btn_is_paid_Click(object sender, EventArgs e)
+    {
+        command.CommandStatus_Update(lbl_id_command_delivery.Text, "is_paid");
+        gvcommand.DataBind();
+        odscommand_gv.DataBind();
+
+        fvcommand.DataBind();
+        odscommand_fv.DataBind();
     }
     protected void btnAddNewMatrial_click(object sender, EventArgs e)
     {

@@ -341,10 +341,13 @@
                      <table class="tbl-edit">
                            <tr><td><div style="font-size: 18px;color: rgb(23, 168, 187);">订单信息</div></td><td></td><td></td>
                                <td>
+                                   <asp:Button ID="btn_is_done" runat="server" CssClass="btn btn-default" OnClick="btn_is_done_Click" Text="完成生产" Visible='<%#Eval("date_done").ToString() ==""?Boolean.Parse("True"):Boolean.Parse("False") %>'/>
+                               </td>
+                               <td>
                                    <button type="button" id="btn_AddDelivery" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-truck"></i> 出货</button>
                                </td>
-                                <td>
-                                   <asp:Button ID="btn_is_done" runat="server" CssClass="btn btn-default" OnClick="btn_is_done_Click" Text="完成生产"/>
+                               <td>
+                                   <asp:Button ID="btn_is_paid" runat="server" CssClass="btn btn-default" OnClick="btn_is_paid_Click" Text="到账" Visible='<%#Eval("is_Sent").ToString() =="True" && Eval("is_Paid").ToString() =="False"?Boolean.Parse("True"):Boolean.Parse("False") %>'/>
                                </td>
                            </tr>
                            <tr>

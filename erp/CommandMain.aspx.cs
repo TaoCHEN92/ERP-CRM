@@ -153,6 +153,11 @@ public partial class CommandMain : System.Web.UI.Page
             {
                 e.Row.Cells[1].BackColor = System.Drawing.Color.FromArgb(140, 255, 181);
             }
+            else if (e.Row.Cells[1].Text == "已发货")
+            {
+            e.Row.Cells[1].BackColor = System.Drawing.Color.FromArgb(176, 207, 255);
+            }
+        
         }
     }
     public void ResetAll() 

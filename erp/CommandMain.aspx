@@ -17,6 +17,7 @@
                      </div>
                 </div>
                 </td>
+                <td><asp:DropDownList ID="ddlNameClientForSearch" runat="server" CssClass="form-control" DataSourceID="odsNameClient" DataTextField="enterprise" DataValueField="id"></asp:DropDownList></td>
                 <td>
                     <button type="button" class="btn btn-default ml80" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-plus"></i> 添加新订单</button>
                 </td>
@@ -46,7 +47,7 @@
                                <td>客户名称:</td>
                                <td><asp:DropDownList ID="ddlNameClient" runat="server" CssClass="form-control" DataSourceID="odsNameClient" DataTextField="enterprise" DataValueField="id"></asp:DropDownList></td>
                                    
-                              <td>产品名称:</td>
+                              <td>产品型号:</td>
                               <td><asp:TextBox ID="tbNameProduct" runat="server" cssClass="form-control"></asp:TextBox></td>
                            </tr>
                            <tr>
@@ -319,7 +320,7 @@
                      <asp:BoundField DataField="id_command" HeaderText="合同号" ReadOnly="True"/>
                      <asp:BoundField DataField="status" HeaderText="进度" ReadOnly="True"/>
                      <asp:BoundField DataField="enterprise" HeaderText="客户名称" ReadOnly="True"/>
-                     <asp:BoundField DataField="name_product" HeaderText="产品名称" ReadOnly="True"/>
+                     <asp:BoundField DataField="name_product" HeaderText="产品型号" ReadOnly="True"/>
                      <asp:BoundField DataField="date_pre_done" HeaderText="预计交货日期" ReadOnly="True" DataFormatString="{0:yyyy-MM-dd}"/>
                      <asp:TemplateField ShowHeader="False">
                          <ItemTemplate>
@@ -367,7 +368,7 @@
                                <td><asp:Label ID="fv_lblNameClient" runat="server"  Text='<%# Bind("enterprise") %>'></asp:Label></td>
                            </tr>
                            <tr>
-                              <td style="font-weight:bold">产品名称:</td>
+                              <td style="font-weight:bold">产品型号:</td>
                               <td><asp:Label ID="fv_lblNameProduct" runat="server"  Text='<%# Bind("name_product") %>'></asp:Label></td>
                            </tr>
                            <tr>
@@ -474,7 +475,7 @@
                                <td><asp:Label ID="fv_lblNameClient" runat="server"  Text='<%# Bind("enterprise") %>'></asp:Label></td>
                            </tr>
                            <tr>
-                              <td style="font-weight:bold">产品名称:</td>
+                              <td style="font-weight:bold">产品型号:</td>
                               <td><asp:TextBox ID="fv_tbNameProduct" runat="server"  Text='<%# Bind("name_product") %>' CssClass="form-control"></asp:TextBox></td>
                            </tr>
                            <tr>

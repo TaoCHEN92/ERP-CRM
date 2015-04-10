@@ -44,6 +44,7 @@
                                <td>原料类型:</td>
                                <td><asp:DropDownList ID="ddlTypeNewMaterial" runat="server" CssClass="form-control">
                                    <asp:ListItem Selected="true" Text="铜版纸" />
+                                   <asp:ListItem Selected="true" Text="双胶纸" />
                                     <asp:ListItem  Text="袋子" />
                                    </asp:DropDownList></td>
                            </tr>
